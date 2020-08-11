@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Gosh.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th></th>
+    </tr>*@
+@*<div style="display: table-cell;"*@
+@foreach (var item in Model) {
+    @*<tr>
+        <td>*@
+<div class="card" style="display: table-cell;padding-left: 25px; ">
+    
+    @*</td>
+        <td>*@
+    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+    <img class="card-img-top mt-3" src="~/images/@item.ImagePath" width="150" alt=""/>
+    <div class="card-body">
+        <h2 class="card-title">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </div>
+
+    @*</td>
+        <td>*@
+   
+    @*</td>
+        </tr>*@
+</div>
+
+}
+@*</div>*@
+
