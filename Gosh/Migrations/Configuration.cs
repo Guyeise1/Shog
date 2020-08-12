@@ -16,8 +16,16 @@
         {
             //  This method will be called after migrating to the latest version.
 
+            AddCategories(context);
+            
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+        }
+
+
+        void AddCategories(Gosh.Models.MyDB context)
+        {
+            //context.Categories.Add(new Models.Category(.....))
         }
     }
 }

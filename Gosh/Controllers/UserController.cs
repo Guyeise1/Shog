@@ -71,7 +71,7 @@ namespace Gosh.Controllers
                 ModelState.AddModelError("Mail", "This mail address is aleady in use");
             }
 
-            user.Username = user.Username.ToUpper();
+             user.Username = user.Username.ToUpper();
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
