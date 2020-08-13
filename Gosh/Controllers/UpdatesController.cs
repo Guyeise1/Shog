@@ -13,33 +13,29 @@ namespace Gosh.Controllers
     public class UpdatesController : ApiController
     {
         // GET: api/Updates
+        // A random account will be loaded
         public async Task<HttpResponseMessage> Get()
         {
-            var updates = await new TweeterUpdateRetviver().FetchUpdate("");
-            var stringUpdate = JsonConvert.SerializeObject(updates);
-            return Request.CreateResponse(HttpStatusCode.OK, stringUpdate, Configuration.Formatters.JsonFormatter);
+            var vals = TweeterUpdateRetviver.SUPPRTED_TWEETER_PAGES;
+            Random random = new Random();
+            int randomNumber = random.Next(0, vals.Length);
+            return await Get(vals[randomNumber]);
         }
 
-
-        // GET: api/Updates/5
-        public string Get(int id)
+        // GET: api/Updates/tasty
+        public async Task<HttpResponseMessage> Get(string account)
         {
-            return "value";
+            try
+            {
+                var updates = await new TweeterUpdateRetviver().FetchUpdate(account);
+                var stringUpdate = JsonConvert.SerializeObject(updates);
+                return Request.CreateResponse(HttpStatusCode.OK, stringUpdate, Configuration.Formatters.JsonFormatter);
+            } catch(ApplicationException)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "No support for account "+ account, Configuration.Formatters.JsonFormatter);
+
+            }
         }
 
-        // POST: api/Updates
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Updates/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Updates/5
-        public void Delete(int id)
-        {
-        }
     }
 }

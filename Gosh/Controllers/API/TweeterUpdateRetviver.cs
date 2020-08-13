@@ -12,11 +12,19 @@ namespace Gosh.Controllers.API
     public class TweeterUpdateRetviver : UpdateRetviver
     {
 
-        private readonly string CONSUMER_KEY = "O5wWiJ26Phnh3Srtkesyd18zn";
-        private readonly string CONSUMER_SECRET = "Nj53N7zLSXd53vWFjdSuvUcwlUehpmvUjzjdxdC6y0jeCUATgy";
+        private static readonly string CONSUMER_KEY = "O5wWiJ26Phnh3Srtkesyd18zn";
+        private static readonly string CONSUMER_SECRET = "Nj53N7zLSXd53vWFjdSuvUcwlUehpmvUjzjdxdC6y0jeCUATgy";
 
+        private static readonly string TASTY_SCREEN_NAME = "tasty";
+        private static readonly string FOOD_DOT_COM_SCREEEN_NAME = "fooddotcom";
 
-        private readonly string TASTY_SCREEN_NAME = "tasty";
+        public static readonly string[] SUPPRTED_TWEETER_PAGES =
+        {
+            TASTY_SCREEN_NAME,
+            FOOD_DOT_COM_SCREEEN_NAME,
+
+        };
+
 
         OAuth2Token tweeterConnection = null;
 
@@ -31,29 +39,54 @@ namespace Gosh.Controllers.API
         }
 
 
-        
-          
-
-        public async Task<TweeterResponse[]> FetchUpdate(string acount)
+        public async Task<TweeterResponse[]> FetchUpdate(string account)
         {
+            if (string.IsNullOrWhiteSpace(account) || 
+                !SUPPRTED_TWEETER_PAGES.Contains(account.ToLower()))
+            {
+                throw new ApplicationException("No support for account " + account);
+            }
+
+            account = account.ToLower();
+
             var connection = await TweeterConnection();
 
-            var tasty = await connection.Statuses.UserTimelineAsync(screen_name: TASTY_SCREEN_NAME, count: 5);
+            var request = await connection.Statuses.UserTimelineAsync(screen_name: account, count: 6);
 
             List<TweeterResponse> tweets = new List<TweeterResponse>();
-            foreach(var tweet in tasty)
+            foreach(var tweet in request)
             {
-                tweets.Add(new TweeterResponse()
+                TweeterResponse response = new TweeterResponse()
                 {
                     Date = tweet.CreatedAt.ToUnixTimeSeconds(),
                     CreatorName = tweet.User.Name,
                     CreatorImageUrl = tweet.User.ProfileImageUrl,
-                    Type = tweet.Entities.Media[0].Type,
                     UpdateText = tweet.Text,
-                    UpdateUrl = tweet.Entities.Media[0].Url,
-                    UpdateImage = tweet.Entities.Media[0].MediaUrl
+                    UpdateUrl = $"https://twitter.com/{account}/status/{tweet.Id}/",
+                };
+                if (tweet.Entities.Media == null)
+                {
+                    // Tweet has only text, no images no videos
+                    response.Type = "Text";
+                    response.VideoUrl = "";
+                    response.UpdateImage = "";
+                } else if (tweet.ExtendedEntities.Media[0].VideoInfo == null)
+                    // Tweet only has images, no text
+                {
+                    response.Type = "Photo";
+                    response.VideoUrl = "";
+                    response.UpdateImage = tweet.ExtendedEntities.Media[0].MediaUrl;
+                } else
+                // Tweet has video in addition to image
+                {
+                    response.Type = "Video";
+                    response.VideoUrl = tweet.ExtendedEntities.Media[0].VideoInfo.Variants[2].Url;
+                    response.UpdateImage = tweet.ExtendedEntities.Media[0].MediaUrl;
+                }
 
-                }); ;
+                tweets.Add(response);
+                
+               
             }
 
 

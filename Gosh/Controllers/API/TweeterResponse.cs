@@ -20,5 +20,7 @@ namespace Gosh.Controllers.API
         public string UpdateUrl { get; set; }
 
         public string UpdateImage { get; set; }
+
+        public string VideoUrl { get; set; }
     }
 }
