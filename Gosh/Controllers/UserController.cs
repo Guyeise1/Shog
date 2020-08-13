@@ -110,7 +110,7 @@ namespace Gosh.Controllers
 
         private bool ValidatePassword(string password)
         {
-            Regex regex = new Regex(@"^(?=.*?[A - Z])(?=.*?[a - z])(?=.*?[0 - 9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
             return regex.IsMatch(password);
 
         }
