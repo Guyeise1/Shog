@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -14,13 +15,31 @@ namespace Gosh.Controllers
     public class UserController : Controller
     {
         private MyDB db = new MyDB();
-
+        
+        /// <summary>
+        /// Checks the session information and return true if admin user is login
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAdmin()
+        {
+            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
+        }
         // GET: User
         public ActionResult Index()
         {
+            if(!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");  
+            }
             return View(db.Users.ToList());
         }
 
+        public ActionResult Forbidden()
+        {
+            Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            Response.StatusDescription = "You are not allowed to enter this page";
+            return View();
+        }
         // GET: User/Details/5
         public ActionResult Details(long? id)
         {
@@ -33,7 +52,12 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            if (IsAdmin() || (Session["Userid"] != null && Session["Username"].ToString() == user.Username) )
+            {
+                return View(user);
+            }
+
+            return RedirectToAction("Forbidden");
         }
 
         // Get: User/Register
@@ -41,6 +65,7 @@ namespace Gosh.Controllers
         {
             return View();
         }
+
 
         // POST: User/Register
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -108,7 +133,7 @@ namespace Gosh.Controllers
                     Session.Add("Username", usr.Username);
                     Session.Add("Userid", usr.ID);
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -122,6 +147,13 @@ namespace Gosh.Controllers
                 return Login();
             }
         }
+        public ActionResult Logout()
+        {
+            Session.Remove("Username");
+            Session.Remove("Userid");
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: User/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -134,7 +166,12 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            if (IsAdmin() || (Session["Userid"] != null && Session["Username"].ToString() == user.Username))
+            {
+                return View(user);
+            }
+
+            return RedirectToAction("Forbidden");
         }
 
         // POST: User/Edit/5
