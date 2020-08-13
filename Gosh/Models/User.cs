@@ -49,10 +49,6 @@ namespace Gosh.Models
 
         public string Mail { get; set; }
 
-        [DataType(DataType.CreditCard)]
-        [DisplayName("Credit Card")]
-        public string CreditCard { get; set; }
-
 
         [DataType(DataType.PhoneNumber)]
         [DisplayName("Phone number")]
