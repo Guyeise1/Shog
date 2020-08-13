@@ -377,6 +377,10 @@
     <Compile Include="Migrations\202008081526358_Initial.designer.cs">
       <DependentUpon>202008081526358_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008131719416_Remove credit card.cs" />
+    <Compile Include="Migrations\202008131719416_Remove credit card.designer.cs">
+      <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -408,6 +412,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Inspiration\Index.cshtml" />
+    <Content Include="Views\User\Forbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -422,6 +427,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008081526358_Initial.resx">
       <DependentUpon>202008081526358_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008131719416_Remove credit card.resx">
+      <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
