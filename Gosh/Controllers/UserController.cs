@@ -132,6 +132,7 @@ namespace Gosh.Controllers
                 {
                     Session.Add("Username", usr.Username);
                     Session.Add("Userid", usr.ID);
+                    Session.Add("FirstName", usr.FirstName);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -151,6 +152,7 @@ namespace Gosh.Controllers
         {
             Session.Remove("Username");
             Session.Remove("Userid");
+            Session.Remove("FirstName");
             return RedirectToAction("Index", "Home");
         }
 
@@ -166,7 +168,7 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
-            if (IsAdmin() || (Session["Userid"] != null && Session["Username"].ToString() == user.Username))
+            if (IsAdmin() || (Session["Userid"] != null && Session["Username"].ToString().ToUpper() == user.Username.ToUpper()))
             {
                 return View(user);
             }
