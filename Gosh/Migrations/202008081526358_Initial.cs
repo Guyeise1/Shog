@@ -45,7 +45,15 @@
                 .PrimaryKey(t => t.ID)
                 .Index(t => t.Username, unique: true)
                 .Index(t => t.Mail, unique: true, name: "IX_Email");
+
+           // Sql(sql:"")
             
+            
+        }
+
+        public void AddDataToDB()
+        {
+
         }
         
         public override void Down()
