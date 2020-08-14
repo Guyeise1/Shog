@@ -7,13 +7,13 @@ namespace Gosh.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class recipies : IMigrationMetadata
+    public sealed partial class recipes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(recipies));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(recipes));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008111917583_recipies"; }
+            get { return "202008141621165_recipes"; }
         }
         
         string IMigrationMetadata.Source

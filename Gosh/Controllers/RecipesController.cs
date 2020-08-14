@@ -20,6 +20,7 @@ namespace Gosh.Controllers
         // GET: Recipes
         public ActionResult Index()
         {
+            
             return View(db.Recipes.ToList());
         }
 

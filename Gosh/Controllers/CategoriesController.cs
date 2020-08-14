@@ -49,8 +49,6 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath")] Category category, HttpPostedFileBase file)
         {
-
-
             
             string path = Path.Combine(Server.MapPath("~/Images"),
                                        Path.GetFileName(file.FileName));
