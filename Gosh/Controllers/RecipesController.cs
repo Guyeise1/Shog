@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Gosh.Models;
+
+
 
 namespace Gosh.Controllers
 {
@@ -38,6 +41,7 @@ namespace Gosh.Controllers
         // GET: Recipes/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = new SelectList(db.Categories, "ID", "CategoryName");
             return View();
         }
 
@@ -46,8 +50,13 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe)
+        public ActionResult Create([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
         {
+
+            string path = Path.Combine(Server.MapPath("~/Images"),
+                                       Path.GetFileName(Imagefile.FileName));
+            Imagefile.SaveAs(path);
+            recipe.HomeImageUrl = Imagefile.FileName;
             if (ModelState.IsValid)
             {
                 db.Recipes.Add(recipe);

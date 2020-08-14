@@ -126,8 +126,10 @@
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\3567.jpg" />
     <Content Include="images\oven.png" />
     <Content Include="images\smart-refrigerator.png" />
+    <Content Include="images\traditional-food-icon.jpg" />
     <Content Include="images\washing-machine.png" />
     <Content Include="obj\Debug\Gosh.csproj.FileListAbsolute.txt" />
     <Content Include="packages\bootstrap.3.0.0\Content\Content\bootstrap-theme.css" />
