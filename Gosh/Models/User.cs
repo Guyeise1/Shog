@@ -15,7 +15,7 @@ namespace Gosh.Models
         public long ID { get; set; }
 
         [Required(ErrorMessage = "Username is required")]
-        [MinLength(5)]
+        [MinLength(6)]
         [StringLength(50)]
         [Index("IX_Username", IsUnique = true)]
 
@@ -48,6 +48,9 @@ namespace Gosh.Models
         [Index("IX_Email", IsUnique = true)]
 
         public string Mail { get; set; }
+
+        [DataType(DataType.CreditCard)]
+        public string CreditCard { get; set; }
 
 
         [DataType(DataType.PhoneNumber)]
