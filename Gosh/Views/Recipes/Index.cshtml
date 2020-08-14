@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Gosh.Models.Recipe>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@foreach (var item in Model)
+{
+    @*<tr>
+        <td>*@
+    <div class="card" style="display: table-cell;padding-left: 25px; ">
+
+        @*</td>
+            <td>*@
+        @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+        <img class="card-img-top mt-3" src="~/images/@item.HomeImageUrl" width="150" alt="" />
+        <div class="card-body">
+            <h2 class="card-title">@Html.DisplayFor(modelItem => item.Header)</h2>
+            @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.RecipeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId })
+        </div>
+
+        @*</td>
+            <td>*@
+
+        @*</td>
+            </tr>*@
+    </div>
+
+}
