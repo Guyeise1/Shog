@@ -42,6 +42,50 @@
         void AddCategories(Gosh.Models.MyDB context)
         {
             //context.Categories.Add(new Models.Category(.....))
+            Category Italiano = new Category();
+            Italiano.CategoryName = "Italiano";
+            Italiano.ImagePath = "Italiano.jpg";
+            new CategoriesController().Create(Italiano, null);
+
+            Category French = new Category();
+            French.CategoryName = "French";
+            French.ImagePath = "French.jpg";
+            new CategoriesController().Create(French, null);
+
+            Category Israeli = new Category();
+            Israeli.CategoryName = "Israeli";
+            Israeli.ImagePath = "Israeli.jpg";
+            new CategoriesController().Create(Israeli, null);
+
+            Category Japanese = new Category();
+            Japanese.CategoryName = "Japanese";
+            Japanese.ImagePath = "Japanese.jpg";
+            new CategoriesController().Create(Japanese, null);
+
+            Category Brazilian = new Category();
+            Brazilian.CategoryName = "Brazilian";
+            Brazilian.ImagePath = "Brazilian.jpg";
+            new CategoriesController().Create(Brazilian, null);
+
+            Category Russian = new Category();
+            Russian.CategoryName = "Russian";
+            Russian.ImagePath = "Russian.jpg";
+            new CategoriesController().Create(Russian, null);
+
+            Category Greek = new Category();
+            Greek.CategoryName = "Greek";
+            Greek.ImagePath = "Greek.jpg";
+            new CategoriesController().Create(Greek, null);
+
+            Category Australian = new Category();
+            Australian.CategoryName = "Australian";
+            Australian.ImagePath = "Australian.jpg";
+            new CategoriesController().Create(Australian, null);
+
+            Category Chinese = new Category();
+            Chinese.CategoryName = "Chinese";
+            Chinese.ImagePath = "Chinese.jpg";
+            new CategoriesController().Create(Chinese, null);
         }
     }
 }

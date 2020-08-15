@@ -51,11 +51,14 @@ namespace Gosh.Controllers
         {
 
 
-            
-            string path = Path.Combine(Server.MapPath("~/Images"),
-                                       Path.GetFileName(file.FileName));
-            file.SaveAs(path);
-            category.ImagePath = file.FileName;
+            if (file != null)
+            {
+                string path = Path.Combine(Server.MapPath("~/Images"),
+                           Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                category.ImagePath = file.FileName;
+            } 
+
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);
