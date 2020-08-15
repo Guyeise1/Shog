@@ -119,7 +119,6 @@
     <Content Include=".idea\.idea.Gosh.dir\.idea\projectSettingsUpdater.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\vcs.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\workspace.xml" />
-    <Content Include="App_Data\Gosh.Models.MyDB.mdf" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\Gosh.dll" />
@@ -421,6 +420,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="bin\roslyn\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
