@@ -1,0 +1,78 @@
+﻿body {
+    margin-top: 3em;
+    display: flex;
+}
+
+.card-titles {
+    color: black;
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.action {
+    color: black;
+    text-decoration: none;
+    background-color: #ffcc99;
+    border-radius: 8px;
+    border: 1px solid #ffe6cc;
+    padding: 7px 10px;
+    margin-left: 0.2em;
+    width: 4.6em;
+    margin-bottom: 2em;
+}
+
+    .action:hover {
+        color: #fff2e6;
+        text-decoration: none;
+        border: 1px solid white;
+    }
+
+.img {
+    border-radius: 1em;
+    border: 1px solid white;
+}
+
+    .img:hover {
+        transform: scale(1.5);
+    }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.categoryContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardContainer {
+    width: 25em;
+}
+
+.createNew{
+    width: 60em;
+    margin-bottom: 2em;
+    justify-self: flex-start;
+}
+
+.createNewButton {
+    color: white;
+    background-color: #339966;
+    border-radius: 8px;
+    border: 1px solid #4CAF50;
+    padding: 7px 13px;
+    cursor: pointer;
+}
+
+    .createNewButton:hover {
+        background-color: #009900;
+        color: white;
+        text-decoration:none;
+    }
