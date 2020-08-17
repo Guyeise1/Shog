@@ -11,6 +11,9 @@ namespace Gosh.Models
 
         [DisplayName("Image")]
         public string ImagePath { get; set; }
+
+        [DisplayName("Represnting City")]
+        public string RepresetingCity { get; set; }
         
     }
 }

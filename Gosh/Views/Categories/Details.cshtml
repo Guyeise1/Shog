@@ -23,9 +23,23 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImagePath)
+            <img class="img" src="~/images/@Model.ImagePath"  width="200" height="270" alt="@Url.Content(Model.ImagePath)"  />
         </dd>
+        <dt>
+            Map
+        </dt>
+        <iframe width="600"
+                height="450"
+                frameborder="0" style="border:0"
 
+                alt="@Model.RepresetingCity"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG5D9HBeMoZRSHMu3lBsG4dA_E_a6y9aU
+    &q='@Model.RepresetingCity'" allowfullscreen>
+        </iframe>
+        <br />
+        <label>
+            "City = " + @Model.RepresetingCity
+        </label>
     </dl>
 </div>
 <p>
