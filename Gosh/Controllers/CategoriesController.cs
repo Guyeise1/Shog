@@ -89,7 +89,7 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath,RepresetingCity")] Category category)
         {
             if (ModelState.IsValid)
             {
