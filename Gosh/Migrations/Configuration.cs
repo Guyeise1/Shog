@@ -42,50 +42,114 @@
         void AddCategories(Gosh.Models.MyDB context)
         {
             //context.Categories.Add(new Models.Category(.....))
-            Category Italiano = new Category();
-            Italiano.CategoryName = "Italiano";
-            Italiano.ImagePath = "Italiano.jpg";
-            new CategoriesController().Create(Italiano, null);
 
-            Category French = new Category();
-            French.CategoryName = "French";
-            French.ImagePath = "French.jpg";
-            new CategoriesController().Create(French, null);
+            //Category Italiano = new Category();
+            //Italiano.CategoryName = "Italiano";
+            //Italiano.ImagePath = "Italiano.jpg";
+            //new CategoriesController().Create(Italiano, null);
 
-            Category Israeli = new Category();
-            Israeli.CategoryName = "Israeli";
-            Israeli.ImagePath = "Israeli.jpg";
-            new CategoriesController().Create(Israeli, null);
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Italiano",
+                ImagePath = "Italiano.jpg",
+                RepresetingCity = "Napoli"
+            });
 
-            Category Japanese = new Category();
-            Japanese.CategoryName = "Japanese";
-            Japanese.ImagePath = "Japanese.jpg";
-            new CategoriesController().Create(Japanese, null);
+            //Category French = new Category();
+            //French.CategoryName = "French";
+            //French.ImagePath = "French.jpg";
+            //new CategoriesController().Create(French, null);
 
-            Category Brazilian = new Category();
-            Brazilian.CategoryName = "Brazilian";
-            Brazilian.ImagePath = "Brazilian.jpg";
-            new CategoriesController().Create(Brazilian, null);
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "French",
+                ImagePath = "French.jpg",
+                RepresetingCity = "Paris"
+            });
 
-            Category Russian = new Category();
-            Russian.CategoryName = "Russian";
-            Russian.ImagePath = "Russian.jpg";
-            new CategoriesController().Create(Russian, null);
+            //Category Israeli = new Category();
+            //Israeli.CategoryName = "Israeli";
+            //Israeli.ImagePath = "Israeli.jpg";
+            //new CategoriesController().Create(Israeli, null);
 
-            Category Greek = new Category();
-            Greek.CategoryName = "Greek";
-            Greek.ImagePath = "Greek.jpg";
-            new CategoriesController().Create(Greek, null);
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Israeli",
+                ImagePath = "Israeli.jpg",
+                RepresetingCity = "Jeruasalem"
+            });
 
-            Category Australian = new Category();
-            Australian.CategoryName = "Australian";
-            Australian.ImagePath = "Australian.jpg";
-            new CategoriesController().Create(Australian, null);
+            //Category Japanese = new Category();
+            //Japanese.CategoryName = "Japanese";
+            //Japanese.ImagePath = "Japanese.jpg";
+            //new CategoriesController().Create(Japanese, null);
 
-            Category Chinese = new Category();
-            Chinese.CategoryName = "Chinese";
-            Chinese.ImagePath = "Chinese.jpg";
-            new CategoriesController().Create(Chinese, null);
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Japanese",
+                ImagePath = "Japanese.jpg",
+                RepresetingCity = "Tokyo"
+            });
+
+            //Category Brazilian = new Category();
+            //Brazilian.CategoryName = "Brazilian";
+            //Brazilian.ImagePath = "Brazilian.jpg";
+            //new CategoriesController().Create(Brazilian, null);
+
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Brazilian",
+                ImagePath = "Brazilian.jpg",
+                RepresetingCity = "Rio De Janeiro"
+            });
+
+            //Category Russian = new Category();
+            //Russian.CategoryName = "Russian";
+            //Russian.ImagePath = "Russian.jpg";
+            //new CategoriesController().Create(Russian, null);
+
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Russian",
+                ImagePath = "Russian.jpg",
+                RepresetingCity = "Moscow"
+            });
+
+            //Category Greek = new Category();
+            //Greek.CategoryName = "Greek";
+            //Greek.ImagePath = "Greek.jpg";
+            //new CategoriesController().Create(Greek, null);
+
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Greek",
+                ImagePath = "Greek.jpg",
+                RepresetingCity = "Athens"
+            });
+
+            //Category Australian = new Category();
+            //Australian.CategoryName = "Australian";
+            //Australian.ImagePath = "Australian.jpg";
+            //new CategoriesController().Create(Australian, null);
+
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Australian",
+                ImagePath = "Australian.jpg",
+                RepresetingCity = "Sydney"
+            });
+
+            //Category Chinese = new Category();
+            //Chinese.CategoryName = "Chinese";
+            //Chinese.ImagePath = "Chinese.jpg";
+            //new CategoriesController().Create(Chinese, null);
+
+            context.Categories.AddOrUpdate(new Category()
+            {
+                CategoryName = "Chinese",
+                ImagePath = "Chinese.jpg",
+                RepresetingCity = "Shanghai"
+            });
         }
     }
 }
