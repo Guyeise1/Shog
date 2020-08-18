@@ -47,7 +47,7 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath")] Category category, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category, HttpPostedFileBase file)
         {
 
 
@@ -89,7 +89,7 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath,RepresetingCity")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category)
         {
             if (ModelState.IsValid)
             {

@@ -119,6 +119,10 @@
     <Content Include=".idea\.idea.Gosh.dir\.idea\projectSettingsUpdater.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\vcs.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\workspace.xml" />
+    <Content Include="App_Data\Gosh.Models.MyDB.mdf" />
+    <Content Include="App_Data\Gosh.Models.MyDB_log.ldf">
+      <DependentUpon>Gosh.Models.MyDB.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\Gosh.dll" />
@@ -385,6 +389,10 @@
     <Compile Include="Migrations\202008171608261_Repsrentig_City_in_Category.Designer.cs">
       <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008181239323_Weather_Migration.cs" />
+    <Compile Include="Migrations\202008181239323_Weather_Migration.designer.cs">
+      <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -425,7 +433,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="bin\roslyn\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
@@ -438,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008171608261_Repsrentig_City_in_Category.resx">
       <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008181239323_Weather_Migration.resx">
+      <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

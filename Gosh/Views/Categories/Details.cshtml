@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Category</h4>
+    <h4>Category</h4>vb 
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,10 +32,19 @@
             <iframe width="600"
                     height="450"
                     frameborder="0" style="border:0"
-                    alt="@Model.RepresetingCity"
+                    alt="@Model.RepresetingArea"
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG5D9HBeMoZRSHMu3lBsG4dA_E_a6y9aU
-    &q='@Model.RepresetingCity'" allowfullscreen>
+    &q='@Model.RepresetingArea'" allowfullscreen>
             </iframe>
+        </dd>
+        <dt>
+            Weather
+        </dt>
+        <dd>
+            <a class="weatherwidget-io" href="@Url.Content($"https://forecast7.com/en{Model.WeatherHref}")" data-label_1="@Model.RepresetingArea" data-font="Roboto" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="weather_one">@Model.RepresetingArea</a>
+            <script>
+                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
         </dd>
     </dl>
 </div>

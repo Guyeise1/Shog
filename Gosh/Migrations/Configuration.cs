@@ -41,114 +41,78 @@
 
         void AddCategories(Gosh.Models.MyDB context)
         {
-            //context.Categories.Add(new Models.Category(.....))
-
-            //Category Italiano = new Category();
-            //Italiano.CategoryName = "Italiano";
-            //Italiano.ImagePath = "Italiano.jpg";
-            //new CategoriesController().Create(Italiano, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Italiano",
                 ImagePath = "Italiano.jpg",
-                RepresetingCity = "Napoli"
+                RepresetingArea = "Italy",
+                WeatherHref = "/41d9012d50/rome/"
             });
 
-            //Category French = new Category();
-            //French.CategoryName = "French";
-            //French.ImagePath = "French.jpg";
-            //new CategoriesController().Create(French, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "French",
                 ImagePath = "French.jpg",
-                RepresetingCity = "Paris"
+                RepresetingArea = "France", 
+                WeatherHref = "/48d862d35/paris/"
             });
-
-            //Category Israeli = new Category();
-            //Israeli.CategoryName = "Israeli";
-            //Israeli.ImagePath = "Israeli.jpg";
-            //new CategoriesController().Create(Israeli, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Israeli",
                 ImagePath = "Israeli.jpg",
-                RepresetingCity = "Jeruasalem"
+                RepresetingArea = "Israel", 
+                WeatherHref = "/31d7735d21/jerusalem/"
             });
 
-            //Category Japanese = new Category();
-            //Japanese.CategoryName = "Japanese";
-            //Japanese.ImagePath = "Japanese.jpg";
-            //new CategoriesController().Create(Japanese, null);
-
+            
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Japanese",
                 ImagePath = "Japanese.jpg",
-                RepresetingCity = "Tokyo"
+                RepresetingArea = "Japan", 
+                WeatherHref = "/35d71139d73/tokyo/"
             });
-
-            //Category Brazilian = new Category();
-            //Brazilian.CategoryName = "Brazilian";
-            //Brazilian.ImagePath = "Brazilian.jpg";
-            //new CategoriesController().Create(Brazilian, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Brazilian",
                 ImagePath = "Brazilian.jpg",
-                RepresetingCity = "Rio De Janeiro"
+                RepresetingArea = "Brazil",
+                WeatherHref = "/n22d91n43d17/rio-de-janeiro/"
             });
-
-            //Category Russian = new Category();
-            //Russian.CategoryName = "Russian";
-            //Russian.ImagePath = "Russian.jpg";
-            //new CategoriesController().Create(Russian, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Russian",
                 ImagePath = "Russian.jpg",
-                RepresetingCity = "Moscow"
+                RepresetingArea = "Russia",
+                WeatherHref = "/55d7637d62/moscow/"
             });
-
-            //Category Greek = new Category();
-            //Greek.CategoryName = "Greek";
-            //Greek.ImagePath = "Greek.jpg";
-            //new CategoriesController().Create(Greek, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Greek",
                 ImagePath = "Greek.jpg",
-                RepresetingCity = "Athens"
+                RepresetingArea = "Greece",
+                WeatherHref = "/39d0721d82/greece/"
             });
-
-            //Category Australian = new Category();
-            //Australian.CategoryName = "Australian";
-            //Australian.ImagePath = "Australian.jpg";
-            //new CategoriesController().Create(Australian, null);
 
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Australian",
                 ImagePath = "Australian.jpg",
-                RepresetingCity = "Sydney"
+                RepresetingArea = "Australia",
+                WeatherHref = "/n33d87151d21/sydney/"
             });
-
-            //Category Chinese = new Category();
-            //Chinese.CategoryName = "Chinese";
-            //Chinese.ImagePath = "Chinese.jpg";
-            //new CategoriesController().Create(Chinese, null);
-
             context.Categories.AddOrUpdate(new Category()
             {
                 CategoryName = "Chinese",
                 ImagePath = "Chinese.jpg",
-                RepresetingCity = "Shanghai"
+                RepresetingArea = "China",
+                WeatherHref = "/31d23121d47/shanghai/"
             });
         }
     }
