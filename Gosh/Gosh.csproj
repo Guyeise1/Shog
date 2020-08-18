@@ -381,6 +381,10 @@
     <Compile Include="Migrations\202008131719416_Remove credit card.designer.cs">
       <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008171608261_Repsrentig_City_in_Category.cs" />
+    <Compile Include="Migrations\202008171608261_Repsrentig_City_in_Category.Designer.cs">
+      <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008131719416_Remove credit card.resx">
       <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008171608261_Repsrentig_City_in_Category.resx">
+      <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
