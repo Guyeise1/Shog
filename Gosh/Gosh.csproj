@@ -358,6 +358,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\Chart.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +367,7 @@
     <Compile Include="Controllers\API\TweeterUpdateRetviver.cs" />
     <Compile Include="Controllers\API\UpdateRetviver.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspirationController.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
@@ -413,6 +415,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Inspiration\Index.cshtml" />
     <Content Include="Views\User\Forbidden.cshtml" />
+    <Content Include="Views\Graph\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
