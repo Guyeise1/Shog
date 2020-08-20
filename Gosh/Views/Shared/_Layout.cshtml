@@ -20,7 +20,9 @@
 
                 @{
 
+
                     @Html.ActionLink("Categories", "index", "Categories", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Recipes", "index", "Recipes", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Suprise", "Index", "Inspiration", new { area = "" }, new { @class = "navbar-brand" })
                     if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                     {
