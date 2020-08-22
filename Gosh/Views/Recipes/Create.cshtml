@@ -71,7 +71,7 @@
 
 <div class="form-group">
     <label asp-for="CategoryId" class="control-label"></label>
-    @Html.DropDownList("ID", (SelectList)ViewBag.Categories, "Select Category", new { @class = "form-control" })
+    @Html.DropDownList("CategoryId", (SelectList)ViewBag.Categories, "Select Category", new { @class = "form-control" })
 
     <span asp-validation-for="CategoryId" class="text-danger"></span>
 </div>

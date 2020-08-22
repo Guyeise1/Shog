@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Gosh.Models;
@@ -22,8 +23,11 @@ namespace Gosh.Controllers
         }
 
         // GET: Categories/Details/5
-        public ActionResult Details(long? id)
+        public async Task<ActionResult> Details(long? id)
         {
+            ViewData["Recipes"] = await db.Recipes
+              .Where(x => x.CategoryId == id).ToListAsync();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
