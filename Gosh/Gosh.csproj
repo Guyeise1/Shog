@@ -396,9 +396,9 @@
     <Compile Include="Migrations\202008181239323_Weather_Migration.designer.cs">
       <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008141621165_recipes.cs" />
-    <Compile Include="Migrations\202008141621165_recipes.designer.cs">
-      <DependentUpon>202008141621165_recipes.cs</DependentUpon>
+    <Compile Include="Migrations\202008221131110_recipesUpdate.cs" />
+    <Compile Include="Migrations\202008221131110_recipesUpdate.designer.cs">
+      <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -462,8 +462,8 @@
     <EmbeddedResource Include="Migrations\202008181239323_Weather_Migration.resx">
       <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008141621165_recipes.resx">
-      <DependentUpon>202008141621165_recipes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008221131110_recipesUpdate.resx">
+      <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
