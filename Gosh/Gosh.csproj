@@ -143,8 +143,10 @@
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\3567.jpg" />
     <Content Include="images\oven.png" />
     <Content Include="images\smart-refrigerator.png" />
+    <Content Include="images\traditional-food-icon.jpg" />
     <Content Include="images\washing-machine.png" />
     <Content Include="obj\Debug\Gosh.csproj.FileListAbsolute.txt" />
     <Content Include="packages\bootstrap.3.0.0\Content\Content\bootstrap-theme.css" />
@@ -373,6 +375,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspirationController.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
+    <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -393,10 +396,15 @@
     <Compile Include="Migrations\202008181239323_Weather_Migration.designer.cs">
       <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008141621165_recipes.cs" />
+    <Compile Include="Migrations\202008141621165_recipes.designer.cs">
+      <DependentUpon>202008141621165_recipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\MyDB.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.1.AssemblyAttributes.cs" />
@@ -425,6 +433,11 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Inspiration\Index.cshtml" />
     <Content Include="Views\User\Forbidden.cshtml" />
+    <Content Include="Views\Recipes\Create.cshtml" />
+    <Content Include="Views\Recipes\Delete.cshtml" />
+    <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Recipes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -448,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008181239323_Weather_Migration.resx">
       <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008141621165_recipes.resx">
+      <DependentUpon>202008141621165_recipes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
