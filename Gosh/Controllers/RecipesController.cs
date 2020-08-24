@@ -23,6 +23,12 @@ namespace Gosh.Controllers
             
             return View(db.Recipes.ToList());
         }
+        // string[] because this is how View sends the id...
+        public ActionResult ByCategoryID(string[] CategoryID)
+        {
+            int ID = int.Parse(((string[])CategoryID)[0]);
+            return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
+        }
 
         // GET: Recipes/Details/5
         public ActionResult Details(int? id)
