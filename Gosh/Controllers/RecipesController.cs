@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
 
@@ -42,6 +43,15 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
+
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
+
+            new RecipeLearning().SavePreference((long)Session["Userid"], (int)id);
+
             return View(recipe);
         }
 
