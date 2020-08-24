@@ -16,36 +16,29 @@ namespace Gosh.Controllers.Statistics
         /// This function should be called every time a user press on a recipe to improve
         /// future suggestions.
         /// </summary>
-        /// <param name="usr">
+        /// <param name="UserID">
         /// The user who clicked
         /// </param>
         /// 
-        /// <param name="rcp">
+        /// <param name="RecipeID">
         /// The recipe
         /// </param>
         ///
-        public void SavePreference(User usr, Recipe rcp)
+        public void SavePreference(long UserID, int RecipeID)
         {
-            if (usr == null || rcp == null)
-            {
-                throw new NullReferenceException("User or recipe is null");
-            }
-
             db.userRecipePreferences.Add(new UserRecipePreference()
             {
-                Recipe = rcp,
-                RecipeID = rcp.RecipeId,
-                User = usr,
-                UserID = usr.ID
+                RecipeID = RecipeID,
+                UserID = UserID
             });
 
             db.SaveChanges();
         }
-    
+
         /// <summary>
         /// Gets recommended recipes based on the user preference
         /// </summary>
-        /// <param name="usr">
+        /// <param name="UserID">
         /// The user
         /// </param>
         /// <param name="count">
