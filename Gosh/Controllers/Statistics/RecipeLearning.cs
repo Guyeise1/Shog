@@ -53,14 +53,14 @@ namespace Gosh.Controllers.Statistics
             var query = from p in db.userRecipePreferences
                         where p.UserID == UserID
                         group p by p.Recipe.CategoryId into g
-                        orderby count
+        
                         select new
                         {
                             categoryID = g.Key,
                             count = g.Count()
                         };
 
-            var lst = query.ToList();
+            var lst = query.OrderByDescending(x=>x.count).ToList();
 
             ret = new List<Category>();
             for (int i = 0; i < count; i++)
