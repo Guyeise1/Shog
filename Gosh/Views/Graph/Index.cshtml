@@ -7,6 +7,7 @@
 
 <body>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <div class="dataContainer"></div>
 
     <script>
         d3.json("/Graph/GetAllCategories", function (data) {
@@ -18,10 +19,28 @@
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("width", function (d)
-                {
-
+                .attr("width", function (d) {
+                    return d.NumOfRecipes * 60;
                 })
+                .attr("height", 50)
+                .attr("y", function (d, i) {
+                    return i * 80
+                })
+                .attr("fill", "lightblue");
+
+            canvas.selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("fill", "black")
+                .attr("y", function (d, i) {
+                    return i * 80 + 25
+                })
+                .attr("x", 5)
+                .text(function (d) {
+                    return d.CategoryName + " with " + d.NumOfRecipes + " number of recipes";
+                })
+            
         })
     </script>
 
