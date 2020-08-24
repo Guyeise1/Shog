@@ -81,19 +81,27 @@ namespace Gosh.Controllers
             if (!ValidatePassword(password))
             {
                 ModelState.AddModelError("Password", "The minumum requierments are: 8 characters long containing 1 uppercase letter, 1 lowercase letter, a number and a special character");
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                Response.StatusDescription = "Passwords is not strong enought";
             }
             if(password != ConfirmPassword)
             {
                 ModelState.AddModelError("ConfirmPassword", "Passwords does not match");
+                Response.StatusCode = (int)HttpStatusCode.Conflict;
+                Response.StatusDescription = "Passwords does not match";
             }
 
             if(db.Users.Where<User>(u => u.Username ==  user.Username).ToList<User>().Count != 0)
             {
                 ModelState.AddModelError("Username","Username is aleardy exists");
+                Response.StatusCode = (int)HttpStatusCode.Conflict;
+                Response.StatusDescription = "Username is aleardy exists";
             }
             if(db.Users.Where<User>(u => u.Mail == user.Mail).ToList<User>().Count != 0)
             {
                 ModelState.AddModelError("Mail", "This mail address is aleady in use");
+                Response.StatusCode = (int)HttpStatusCode.Conflict;
+                Response.StatusDescription = "This mail address is aleady in use";
             }
 
              user.Username = user.Username.ToUpper();
@@ -105,6 +113,7 @@ namespace Gosh.Controllers
                 return Login(user.Username, password);
             }
 
+            
             return View(user);
         }
 
@@ -139,12 +148,16 @@ namespace Gosh.Controllers
                 else
                 {
                     ModelState.AddModelError("Password", "Password is incorrect, try again");
+                    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    Response.StatusDescription = "Password is incorrect, try again";
                     return Login();
                 }
             }
             catch
             {
                 ModelState.AddModelError("Username", "Username does not exist");
+                Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                Response.StatusDescription = "Username does not exist";
                 return Login();
             }
         }
