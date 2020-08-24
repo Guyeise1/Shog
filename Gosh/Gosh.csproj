@@ -374,6 +374,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspirationController.cs" />
+    <Compile Include="Controllers\Statistics\RecipeLearning.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -400,6 +401,10 @@
     <Compile Include="Migrations\202008221131110_recipesUpdate.designer.cs">
       <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.cs" />
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.designer.cs">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -407,6 +412,7 @@
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\MyDB.cs" />
+    <Compile Include="Models\UserRecipePreference.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -465,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008221131110_recipesUpdate.resx">
       <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008241016500_UserRecipePreference.resx">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
