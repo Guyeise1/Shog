@@ -21,7 +21,7 @@ namespace Gosh.Models
         public User User { get; set; }
 
         [ForeignKey("Recipe")]
-        public long RecipeID { get; set; }
+        public int RecipeID { get; set; }
 
         public Recipe Recipe { get; set; }
     }
