@@ -171,36 +171,115 @@
                 RecipeId = 4
             });
 
+
+            context.Recipes.AddOrUpdate(new Recipe()
+            {
+                CategoryId = 4,
+                DateCreated = DateTime.Now,
+                Summary = "Test recipe 5",
+                Header = "Test recipe 5",
+                Content = "Test recipe 5",
+                HomeImageUrl = null,
+                RecipeId = 5
+            });
         }
 
         void AddUserRecipePreference(Gosh.Models.MyDB context)
         {
+            long ID = 1;
             context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
             {
                 RecipeID = 1,
                 UserID = 1,
-                ID = 1
-            });
+                ID = ID++
+            }) ;
 
             context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
             {
                 RecipeID = 1,
                 UserID = 1,
-                ID = 2
+                ID = ID++
             });
 
             context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
             {
                 RecipeID = 2,
                 UserID = 1,
-                ID = 3
+                ID = ID++
             });
 
             context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
             {
                 RecipeID = 3,
                 UserID = 1,
-                ID = 4
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 4,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 5,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 5,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 5,
+                UserID = 1,
+                ID = ID++
+            });
+            context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
+            {
+                RecipeID = 5,
+                UserID = 1,
+                ID = ID++
             });
 
 
