@@ -27,7 +27,8 @@ namespace Gosh.Controllers
         {
             if(Session["Userid"] == null)
             {
-                return new UserController().Forbidden();
+                // return new UserController().Forbidden();
+                return RedirectToAction("Forbidden", "User");
             }
 
             return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
