@@ -22,6 +22,8 @@
         </dt>
         <dd>
             <img class="img" src="~/images/@Model.ImagePath" width="200" height="270" alt="@Url.Content(Model.ImagePath)" />
+            @Html.ActionLink("Click here", "ByCategoryID", "Recipes", new { area = "", CategoryID = Html.ValueFor( model => model.ID).ToString() }, new { @class = "navbar-brand" })
+
         </dd>
 
         <dt>

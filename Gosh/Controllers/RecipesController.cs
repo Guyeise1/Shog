@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
 
@@ -23,6 +24,12 @@ namespace Gosh.Controllers
             
             return View(db.Recipes.ToList());
         }
+        // string[] because this is how View sends the id...
+        public ActionResult ByCategoryID(string[] CategoryID)
+        {
+            int ID = int.Parse(((string[])CategoryID)[0]);
+            return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
+        }
 
         // GET: Recipes/Details/5
         public ActionResult Details(int? id)
@@ -36,6 +43,15 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
+
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
+
+            new RecipeLearning().SavePreference((long)Session["Userid"], (int)id);
+
             return View(recipe);
         }
 
