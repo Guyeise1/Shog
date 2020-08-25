@@ -57,7 +57,9 @@
 
                     //<label class="label success" style="padding-top: 30"> @(Session["Username"])</label>
                     @Html.ActionLink(Session["FirstName"].ToString(), "Edit" ,"User",new { area="", id = long.Parse(Session["Userid"].ToString()) }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Recommended for you", "RecommendedForYou", "Categories", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Logout", "Logout", "User", new { area = "" }, new { @class = "navbar-brand" })
+
                 }
 
                 else

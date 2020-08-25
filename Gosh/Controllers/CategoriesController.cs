@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
 namespace Gosh.Controllers
@@ -20,6 +21,17 @@ namespace Gosh.Controllers
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
+        }
+        
+        public ActionResult RecommendedForYou()
+        {
+            if(Session["Userid"] == null)
+            {
+                // return new UserController().Forbidden();
+                return RedirectToAction("Forbidden", "User");
+            }
+
+            return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
         }
 
         // GET: Categories/Details/5
