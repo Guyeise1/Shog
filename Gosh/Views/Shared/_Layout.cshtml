@@ -29,6 +29,10 @@
                         @Html.ActionLink("All Users", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
                     }
 
+                    if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                    {
+                        @Html.ActionLink("Statistics", "Index", "Graph", new { area = "" }, new { @class = "navbar-brand" })
+                    }
                     //<div class="col-sm">
                     //<input id="title-input" type="text" class="navbar-brand" placeholder="Title" />
                     //</div>

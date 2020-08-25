@@ -22,10 +22,26 @@ namespace Gosh.Controllers
     {
         private MyDB db = new MyDB();
 
+        public bool IsAdmin()
+        {
+            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
+        }
+
         // GET: Graph
         public ActionResult Index()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             return View(db.Categories.ToList());
+        }
+
+        public ActionResult Forbidden()
+        {
+            Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            Response.StatusDescription = "You are not allowed to enter this page";
+            return View();
         }
 
         public ActionResult GetAllCategories()
