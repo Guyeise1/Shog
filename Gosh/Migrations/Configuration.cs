@@ -22,13 +22,13 @@
             AddCategories(context);
             AddRecipies(context);
             AddUserRecipePreference(context);
-            CreateAdmin();
+            CreateAdmin(context);
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
         }
 
 
-        void CreateAdmin()
+        void CreateAdmin(Gosh.Models.MyDB context)
         {
             User admin = new User();
             admin.FirstName = "Admin";
@@ -38,7 +38,15 @@
             admin.Mail = "admin@gosh.com";
             admin.PhoneNumber = "+972-557-0555-12";
             admin.Username = "admin";
-            new UserController().Register(admin, admin.Password, admin.ConfirmPassword);
+            Password p = Password.Create(admin.Password);
+            p.UserID = admin.ID;
+            p.User = admin;
+
+            context.Users.AddOrUpdate(admin);
+            context.Passwords.AddOrUpdate(p);
+
+
+
         }
 
         void AddCategories(Gosh.Models.MyDB context)
@@ -192,7 +200,7 @@
                 RecipeID = 1,
                 UserID = 1,
                 ID = ID++
-            }) ;
+            });
 
             context.userRecipePreferences.AddOrUpdate(new Models.UserRecipePreference()
             {
