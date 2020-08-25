@@ -26,6 +26,18 @@
         <dd>
             @Html.DisplayFor(model => model.ImagePath)
         </dd>
+        <dt>
+            On The Map
+        </dt>
+        <dd>
+            <iframe width="600"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    alt="@Model.RepresetingArea"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG5D9HBeMoZRSHMu3lBsG4dA_E_a6y9aU
+    &q='@Model.RepresetingArea'" allowfullscreen>
+            </iframe>
+        </dd>
 
     </dl>
 

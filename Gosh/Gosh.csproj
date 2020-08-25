@@ -119,6 +119,10 @@
     <Content Include=".idea\.idea.Gosh.dir\.idea\projectSettingsUpdater.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\vcs.xml" />
     <Content Include=".idea\.idea.Gosh.dir\.idea\workspace.xml" />
+    <Content Include="App_Data\Gosh.Models.MyDB.mdf" />
+    <Content Include="App_Data\Gosh.Models.MyDB_log.ldf">
+      <DependentUpon>Gosh.Models.MyDB.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\Gosh.dll" />
@@ -139,8 +143,10 @@
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\3567.jpg" />
     <Content Include="images\oven.png" />
     <Content Include="images\smart-refrigerator.png" />
+    <Content Include="images\traditional-food-icon.jpg" />
     <Content Include="images\washing-machine.png" />
     <Content Include="obj\Debug\Gosh.csproj.FileListAbsolute.txt" />
     <Content Include="packages\bootstrap.3.0.0\Content\Content\bootstrap-theme.css" />
@@ -370,7 +376,9 @@
     <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspirationController.cs" />
+    <Compile Include="Controllers\Statistics\RecipeLearning.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
+    <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -383,12 +391,30 @@
     <Compile Include="Migrations\202008131719416_Remove credit card.designer.cs">
       <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008171608261_Repsrentig_City_in_Category.cs" />
+    <Compile Include="Migrations\202008171608261_Repsrentig_City_in_Category.Designer.cs">
+      <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008181239323_Weather_Migration.cs" />
+    <Compile Include="Migrations\202008181239323_Weather_Migration.designer.cs">
+      <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008221131110_recipesUpdate.cs" />
+    <Compile Include="Migrations\202008221131110_recipesUpdate.designer.cs">
+      <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.cs" />
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.designer.cs">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\MyDB.cs" />
+    <Compile Include="Models\UserRecipePreference.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -416,6 +442,12 @@
     <Content Include="Views\Inspiration\Index.cshtml" />
     <Content Include="Views\User\Forbidden.cshtml" />
     <Content Include="Views\Graph\Index.cshtml" />
+    <Content Include="Views\Recipes\Create.cshtml" />
+    <Content Include="Views\Recipes\Delete.cshtml" />
+    <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Recipes\Index.cshtml" />
+    <Content Include="Views\Shared\_RecipeHorizontal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -424,7 +456,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="bin\roslyn\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
@@ -434,6 +465,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008131719416_Remove credit card.resx">
       <DependentUpon>202008131719416_Remove credit card.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008171608261_Repsrentig_City_in_Category.resx">
+      <DependentUpon>202008171608261_Repsrentig_City_in_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008181239323_Weather_Migration.resx">
+      <DependentUpon>202008181239323_Weather_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008221131110_recipesUpdate.resx">
+      <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008241016500_UserRecipePreference.resx">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

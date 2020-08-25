@@ -17,11 +17,16 @@ namespace Gosh.Controllers.API
 
         private static readonly string TASTY_SCREEN_NAME = "tasty";
         private static readonly string FOOD_DOT_COM_SCREEEN_NAME = "fooddotcom";
+        private static readonly string GORDON_REMSY_SCREEN_NAME = "GordonRamsay";
+        private static readonly string WALLA_FOOD_SCREEN_NAME = "WallaFood";
 
         public static readonly string[] SUPPRTED_TWEETER_PAGES =
         {
             TASTY_SCREEN_NAME,
             FOOD_DOT_COM_SCREEEN_NAME,
+            WALLA_FOOD_SCREEN_NAME,
+            GORDON_REMSY_SCREEN_NAME
+
 
         };
 
@@ -42,7 +47,7 @@ namespace Gosh.Controllers.API
         public async Task<TweeterResponse[]> FetchUpdate(string account)
         {
             if (string.IsNullOrWhiteSpace(account) || 
-                !SUPPRTED_TWEETER_PAGES.Contains(account.ToLower()))
+                !SUPPRTED_TWEETER_PAGES.Contains(account, StringComparer.OrdinalIgnoreCase))
             {
                 throw new ApplicationException("No support for account " + account);
             }
@@ -80,7 +85,10 @@ namespace Gosh.Controllers.API
                 // Tweet has video in addition to image
                 {
                     response.Type = "Video";
-                    response.VideoUrl = tweet.ExtendedEntities.Media[0].VideoInfo.Variants[2].Url;
+                    response.VideoUrl = (from videoOption in tweet.ExtendedEntities.Media[0].VideoInfo.Variants
+                                         where videoOption.ContentType.StartsWith("video")
+                                         orderby videoOption.Bitrate descending
+                                         select videoOption.Url).FirstOrDefault();
                     response.UpdateImage = tweet.ExtendedEntities.Media[0].MediaUrl;
                 }
 

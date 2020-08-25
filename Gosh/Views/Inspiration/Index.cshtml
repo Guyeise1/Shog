@@ -47,7 +47,7 @@
                             
                         }).append(
                             $('<tr>').append(
-                                $('<img />', { src: creatorImage}),
+                                $('<img />', { src: creatorImage, style:"padding-right:10px; padding-bottom:10px;"}),
                                 $('<label>').text(creatorName),
                                 $('<text>').text('/' + (new Date(date)).toLocaleTimeString()),
                                 $('<br/>')),
@@ -57,7 +57,7 @@
                         
                      $('<tr>').append((type == "Text")
                           ? ""
-                                : $("<div>").append((!!videoLink)
+                         : $("<div>", { style: "width: 250px; height: auto"}).append((!!videoLink)
                                     ? $("<video >", {
                                         controls: "controls"
                                     }).append($("<source>", { src: videoLink }))

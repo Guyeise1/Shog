@@ -5,139 +5,138 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
+
+
 namespace Gosh.Controllers
 {
-    public class CategoriesController : Controller
+    public class RecipesController : Controller
     {
         private MyDB db = new MyDB();
 
-        // GET: Categories
+        // GET: Recipes
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            
+            return View(db.Recipes.ToList());
         }
-        
-        public ActionResult RecommendedForYou()
+        // string[] because this is how View sends the id...
+        public ActionResult ByCategoryID(string[] CategoryID)
         {
-            if(Session["Userid"] == null)
+            int ID = int.Parse(((string[])CategoryID)[0]);
+            return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
+        }
+
+        // GET: Recipes/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
             {
-                // return new UserController().Forbidden();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Recipe recipe = db.Recipes.Find(id);
+            if (recipe == null)
+            {
+                return HttpNotFound();
+            }
+
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
                 return RedirectToAction("Forbidden", "User");
             }
 
-            return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
+            new RecipeLearning().SavePreference((long)Session["Userid"], (int)id);
+
+            return View(recipe);
         }
 
-        // GET: Categories/Details/5
-        public async Task<ActionResult> Details(long? id)
-        {
-            ViewData["Recipes"] = await db.Recipes
-              .Where(x => x.CategoryId == id).ToListAsync();
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
-        // GET: Categories/Create
+        // GET: Recipes/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = new SelectList(db.Categories, "ID", "CategoryName");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
         {
 
-
-            if (file != null)
-            {
-                string path = Path.Combine(Server.MapPath("~/Images"),
-                           Path.GetFileName(file.FileName));
-                file.SaveAs(path);
-                category.ImagePath = file.FileName;
-            } 
-
+            string path = Path.Combine(Server.MapPath("~/Images"),
+                                       Path.GetFileName(Imagefile.FileName));
+            Imagefile.SaveAs(path);
+            recipe.HomeImageUrl = Imagefile.FileName;
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                db.Recipes.Add(recipe);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(recipe);
         }
 
-        // GET: Categories/Edit/5
-        public ActionResult Edit(long? id)
+        // GET: Recipes/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            Recipe recipe = db.Recipes.Find(id);
+            if (recipe == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(recipe);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Recipes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category)
+        public ActionResult Edit([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(recipe).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(recipe);
         }
 
-        // GET: Categories/Delete/5
-        public ActionResult Delete(long? id)
+        // GET: Recipes/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            Recipe recipe = db.Recipes.Find(id);
+            if (recipe == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(recipe);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Recipes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            Recipe recipe = db.Recipes.Find(id);
+            db.Recipes.Remove(recipe);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
