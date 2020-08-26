@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<body>
+    <div id="my_dataviz"></div>
+    <script>
+
+        // set the dimensions and margins of the graph
+        var margin = { top: 30, right: 30, bottom: 70, left: 60 },
+            width = 460 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#my_dataviz")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // Parse the Data
+        d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function (data) {
+
+            // X axis
+            var x = d3.scaleBand()
+                .range([0, width])
+                .domain(data.map(function (d) { return d.Country; }))
+                .padding(0.2);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+                .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-45)")
+                .style("text-anchor", "end");
+
+            // Add Y axis
+            var y = d3.scaleLinear()
+                .domain([0, 13000])
+                .range([height, 0]);
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            // Bars
+            svg.selectAll("mybar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", function (d) { return x(d.Country); })
+                .attr("y", function (d) { return y(d.Value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function (d) { return height - y(d.Value); })
+                .attr("fill", "#69b3a2")
+
+        })
+    </script>
+    <style>
+    </style>
+</body>
+
+
+
+
+
+@*<script>
+
+        var width = 1200,
+            height = 400,
+            padding = 50;
+
+        d3.json("/Graph/GetAllCategories", function (data) {
+
+            var map = data.map(function (i) { return i.count; })
+            console.log(map);
+
+            var histogram = d3.layout.histogram()
+                .bins(3)
+                (map)
+
+            var x = d3.scale.linear()
+                .domain([0, d3.max(map)])
+                .range([0, width]);
+
+            var y = d3.scale.linear()
+                .domain([0, d3.max(histogram.map(function (i) { return i.length; }))])
+                .range([0, height]);
+
+            var xAxis = d3.svg.axis().scale(x).tickSize(-height);
+            var yAxis = d3.svg.axis().scale(y)
+                .ticks(4)
+                .orient("right");
+
+            var canvas = d3.select("#bar-chart").append("svg")
+                .attr("width", width)
+                .attr("height", height + padding);
+
+            var group = canvas.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            var bars = canvas.selectAll(".bar")
+                .data(histogram)
+                .enter()
+                .append("g")
+                .attr("transform", "translate(20,0)");
+
+
+            bars.append("rect")
+                .attr("x", function (d) { return x(d.x); }) // x represent the lower bound (first number)
+                .attr("y", function (d) { return 400 - y(d.y); }) // Starting from 0 (height - lower bound)
+                .attr("width", function (d) { return x(d.dx); }) // dx represent the range of numbers
+                .attr("height", function (d) { return y(d.y); }) // y represent the amount of values
+                .style({ 'fill': '#3c763d', 'stroke': '#d6e9c6', 'stroke-width': '5' })
+
+
+            console.log(histogram);
+        })
+
+    </script>*@
