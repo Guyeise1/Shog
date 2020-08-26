@@ -33,10 +33,11 @@
 .img {
     border-radius: 1em;
     border: 1px solid white;
+    object-fit:cover;
 }
 
     .img:hover {
-        transform: scale(1.5);
+        transform: scale(1.2);
     }
 
 .container {

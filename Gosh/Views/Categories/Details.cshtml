@@ -2,11 +2,14 @@
 @model Gosh.Models.Category
 
 @{ ViewBag.Title = "Details"; }
+<link href="~/Content/category.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
-<h2>Details</h2>
 
-<div>
-    <h4>Category</h4>vb
+
+
+<div class="row">
+    <h2>@Html.DisplayFor(model => model.CategoryName)</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,19 +19,20 @@
         <dd>
             @Html.DisplayFor(model => model.CategoryName)
         </dd>
+        <dd>
+            On The Map
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
         <dd>
             <img class="img" src="~/images/@Model.ImagePath" width="200" height="270" alt="@Url.Content(Model.ImagePath)" />
-            @Html.ActionLink("Click here", "ByCategoryID", "Recipes", new { area = "", CategoryID = Html.ValueFor( model => model.ID).ToString() }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Click here", "ByCategoryID", "Recipes", new { area = "", CategoryID = Html.ValueFor(model => model.ID).ToString() }, new { @class = "navbar-brand" })
 
         </dd>
 
-        <dt>
-            On The Map
-        </dt>
+
         <dd>
             <iframe width="600"
                     height="450"
@@ -50,17 +54,16 @@
     </dl>
 
     <div>
-        <h4 class="text-dark">Recipes</h4>
+        <h2 class="text-dark">Recipes</h2>
         <hr />
-        <dl class="dl-horizontal">
+        <div class="categoryContainer">
             @foreach (Recipe r in (List<Recipe>)ViewData["Recipes"])
             {
-<h1>omri</h1>
-<div class="row">
-    @Html.Partial("_RecipeHorizontal", r)
-</div>
-}
-        </dl>
+                <div class="cardContainer">
+                    @Html.Partial("_RecipeHorizontal", r)
+                </div>
+            }
+        </div>
     </div>
 
 </div>

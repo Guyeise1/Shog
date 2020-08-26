@@ -29,7 +29,6 @@ textarea {
 .nav-style {
     background: url('Images/nav-image.png');
     background-image: url("Images/nav-image.png");
-    font-color: white;
 }
 
 .navbar-inverse .navbar-brand {
@@ -43,6 +42,7 @@ textarea {
 
 .navbar {
     height: 150px;
+    border: 150px;
     color: white;
 }
 
@@ -52,4 +52,12 @@ textarea {
     background-color: slategrey;
     border-radius: 1em;
     opacity: 0.9;
+}
+
+.row{
+    margin-top: 90px;
+}
+
+h2 {
+    padding-left: 50px;
 }
