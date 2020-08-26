@@ -17,44 +17,46 @@
         </th>
         <th></th>
     </tr>*@
-<div class="categoryContainer">
+
     <div class="createNew">
         @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
     </div>
+    <br />
+    
+    <div class="categoryContainer">
+        @foreach (var item in Model)
+        {
 
-    @foreach (var item in Model)
-    {
-
-        @*<tr>
+            @*<tr>
             <td>*@
-        <div class="cardContainer">
+            <div class="cardContainer">
 
-            <div class="card" style="display: table-cell;padding-left: 25px; ">
+                <div class="card" style="display: table-cell;padding-left: 25px; ">
 
-                @*</td>
+                    @*</td>
                     <td>*@
-                @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-                <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.ImagePath" />
-                <div class="card-body">
-                    <h2 class="card-titles">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
-                    <div class="actionContainer">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+                    <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.ImagePath" />
+                    <div class="card-body">
+                        <h2 class="card-titles">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
+                        <div class="actionContainer">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                        </div>
                     </div>
-                </div>
 
-                @*</td>
+                    @*</td>
                     <td>*@
 
-                @*</td>
+                    @*</td>
                     </tr>*@
+                </div>
             </div>
-        </div>
 
-    }
-    @*</div>*@
-</div>
+        }
 
+        @*</div>*@
 
+    </div>
 
