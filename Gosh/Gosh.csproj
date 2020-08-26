@@ -441,13 +441,13 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Inspiration\Index.cshtml" />
     <Content Include="Views\User\Forbidden.cshtml" />
-    <Content Include="Views\Graph\Index.cshtml" />
     <Content Include="Views\Recipes\Create.cshtml" />
     <Content Include="Views\Recipes\Delete.cshtml" />
     <Content Include="Views\Recipes\Details.cshtml" />
     <Content Include="Views\Recipes\Edit.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Shared\_RecipeHorizontal.cshtml" />
+    <Content Include="Views\Graph\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

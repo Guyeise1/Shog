@@ -1,125 +1,140 @@
 ﻿<!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
+<head>
+    <style>
+        .dataContainer {
+            margin-left: 1em;
+            margin-top: 1em;
+        }
 
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+        .lable {
+            font-family: sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .insideText {
+            font-family: sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            fill: white;
+        }
+
+        .firstHeader {
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            font-family: sans-serif;
+            font-size: 3em;
+            text-shadow: 0.1em 0.1em 0.1em lightpink;
+            font-weight: bold;
+        }
+
+        .secondHeader {
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            font-family: sans-serif;
+            font-size: 3em;
+            text-shadow: 0.1em 0.1em 0.1em lightgreen;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
 
 <body>
-    <div id="my_dataviz"></div>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <div class="firstHeader">Top category by recipes</div>
+    <div class="dataContainer"></div>
+    <div class="secondHeader">The leading year in creating recipes</div>
+    <div class="byYears"></div>
     <script>
 
-        // set the dimensions and margins of the graph
-        var margin = { top: 30, right: 30, bottom: 70, left: 60 },
-            width = 460 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+        d3.json("/Graph/GetAllCategories", function (data) {
+            var canvas = d3.select(".dataContainer").append("svg")
+                .attr("width", 1000)
+                .attr("height", 700);
 
-        // append the svg object to the body of the page
-        var svg = d3.select("#my_dataviz")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-        // Parse the Data
-        d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function (data) {
-
-            // X axis
-            var x = d3.scaleBand()
-                .range([0, width])
-                .domain(data.map(function (d) { return d.Country; }))
-                .padding(0.2);
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x))
-                .selectAll("text")
-                .attr("transform", "translate(-10,0)rotate(-45)")
-                .style("text-anchor", "end");
-
-            // Add Y axis
-            var y = d3.scaleLinear()
-                .domain([0, 13000])
-                .range([height, 0]);
-            svg.append("g")
-                .call(d3.axisLeft(y));
-
-            // Bars
-            svg.selectAll("mybar")
+            canvas.selectAll("rect")
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", function (d) { return x(d.Country); })
-                .attr("y", function (d) { return y(d.Value); })
-                .attr("width", x.bandwidth())
-                .attr("height", function (d) { return height - y(d.Value); })
-                .attr("fill", "#69b3a2")
+                .attr("width", function (d) {
+                    return d.NumOfRecipes * 60 + 5;
+                })
+                .attr("height", 50)
+                .attr("y", function (d, i) {
+                    return i * 80
+                })
+                .attr("fill", "lightpink");
+
+            canvas.selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("fill", "black")
+                .attr("y", function (d, i) {
+                    return i * 80 + 30
+                })
+                .attr("x", 5)
+                .text(function (d) {
+                    return d.CategoryName + " : " + d.NumOfRecipes;
+                })
+
+        })
+
+        var colors = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var svg = d3.select(".byYears").append("svg")
+            .attr("width", 1000)
+            .attr("height", 500)
+            .style("background", "white");
+
+        d3.json("/Graph/GetRecipesByYears", function (details) {
+            var detailsArray = [];
+            details.forEach(detail => detailsArray.push({ year: detail.year, recipes: detail.recipes }));
+            console.log(detailsArray);
+            var data = d3.pie().sort(null).value(function (d) { return d.recipes; })
+                (detailsArray);
+            console.log(data);
+
+            var segments = d3.arc()
+                .innerRadius(0)
+                .outerRadius(200)
+                .padAngle(.05)
+                .padRadius(50);
+
+            var sections = svg.append("g").attr("transform", "translate(250, 250)")
+                .selectAll("path").data(data);
+
+            sections.enter().append("path").attr("d", segments).attr("fill",
+                function (d) { return colors(d.data.year); });
+
+            var content = d3.select("g").selectAll(".text").data(data);
+            content.enter().append("text").classed("insideText", true).each(function (d) {
+                var center = segments.centroid(d);
+                d3.select(this).attr("x", center[0]).attr("y", center[1])
+                    .text(d.data.recipes);
+            })
+
+            var legends = svg.append("g").attr("transform", "translate(500, 300)")
+                .selectAll(".legends").data(data);
+            var legend = legends.enter().append("g").classed("legends", true)
+                .attr("transform", function (d, i) {
+                    return "translate(0," + (i - 8) * 30 + ")";
+                });
+            legend.append("rect").attr("width", 20).attr("height", 20)
+                .attr("fill", function (d) { return colors(d.data.year); });
+            legend.append("text").classed("label", true).text(function (d) { return d.data.year; })
+                .attr("fill", function (d) { return colors(d.data.year); })
+                .attr("x", 30)
+                .attr("y", 15);
 
         })
     </script>
-    <style>
-    </style>
+
 </body>
-
-
-
-
-
-@*<script>
-
-        var width = 1200,
-            height = 400,
-            padding = 50;
-
-        d3.json("/Graph/GetAllCategories", function (data) {
-
-            var map = data.map(function (i) { return i.count; })
-            console.log(map);
-
-            var histogram = d3.layout.histogram()
-                .bins(3)
-                (map)
-
-            var x = d3.scale.linear()
-                .domain([0, d3.max(map)])
-                .range([0, width]);
-
-            var y = d3.scale.linear()
-                .domain([0, d3.max(histogram.map(function (i) { return i.length; }))])
-                .range([0, height]);
-
-            var xAxis = d3.svg.axis().scale(x).tickSize(-height);
-            var yAxis = d3.svg.axis().scale(y)
-                .ticks(4)
-                .orient("right");
-
-            var canvas = d3.select("#bar-chart").append("svg")
-                .attr("width", width)
-                .attr("height", height + padding);
-
-            var group = canvas.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-
-            var bars = canvas.selectAll(".bar")
-                .data(histogram)
-                .enter()
-                .append("g")
-                .attr("transform", "translate(20,0)");
-
-
-            bars.append("rect")
-                .attr("x", function (d) { return x(d.x); }) // x represent the lower bound (first number)
-                .attr("y", function (d) { return 400 - y(d.y); }) // Starting from 0 (height - lower bound)
-                .attr("width", function (d) { return x(d.dx); }) // dx represent the range of numbers
-                .attr("height", function (d) { return y(d.y); }) // y represent the amount of values
-                .style({ 'fill': '#3c763d', 'stroke': '#d6e9c6', 'stroke-width': '5' })
-
-
-            console.log(histogram);
-        })
-
-    </script>*@
