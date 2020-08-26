@@ -21,7 +21,6 @@ namespace Gosh.Controllers
     public class GraphController : Controller
     {
         private MyDB db = new MyDB();
-
         public bool IsAdmin()
         {
             return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";

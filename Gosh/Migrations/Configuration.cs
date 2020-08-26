@@ -37,10 +37,12 @@
             admin.ConfirmPassword = "Aa123456!";
             admin.Mail = "admin@gosh.com";
             admin.PhoneNumber = "+972-557-0555-12";
-            admin.Username = "admin";
+            admin.Username = "ADMIN";
+            admin.ID = 1;
             Password p = Password.Create(admin.Password);
             p.UserID = admin.ID;
             p.User = admin;
+            p.ID = 1;
 
             context.Users.AddOrUpdate(admin);
             context.Passwords.AddOrUpdate(p);
@@ -137,59 +139,84 @@
 
         void AddRecipies(Gosh.Models.MyDB context)
         {
-            context.Recipes.AddOrUpdate(new Recipe()
-            {
-                CategoryId = 2,
-                DateCreated = DateTime.Now,
-                Summary = "Test recipe 1",
-                Header = "Test recipe 1",
-                Content = "Test recipe 1",
-                HomeImageUrl = null,
-                RecipeId = 1
-            });
-
-            context.Recipes.AddOrUpdate(new Recipe()
-            {
-                CategoryId = 2,
-                DateCreated = DateTime.Now,
-                Summary = "Test recipe 2",
-                Header = "Test recipe 2",
-                Content = "Test recipe 2",
-                HomeImageUrl = null,
-                RecipeId = 2
-            });
+            int id = 1;
             context.Recipes.AddOrUpdate(new Recipe()
             {
                 CategoryId = 1,
-                DateCreated = DateTime.Now,
-                Summary = "Test recipe 3",
-                Header = "Test recipe 3",
-                Content = "Test recipe 3",
-                HomeImageUrl = null,
-                RecipeId = 3
+                DateCreated = new DateTime(2019, 3, 4, 11, 2, 5, 0),
+                Summary = "Summary for pasta",
+                Header = "Pasta",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "/Recipes/Pasta.jpg",
+                RecipeId = id++
+            }) ;
+
+            context.Recipes.AddOrUpdate(new Recipe()
+            {
+                CategoryId = 1,
+                DateCreated = new DateTime(2019, 4, 1, 12, 0, 4, 0),
+                Summary = "Summary for pizza",
+                Header = "Pizza",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Pizza.jpg",
+                RecipeId = id++
+            }) ;
+            context.Recipes.AddOrUpdate(new Recipe()
+            {
+                CategoryId = 4,
+                DateCreated = new DateTime(2019, 5, 2, 1, 5, 2, 1),
+                Summary = "Summary for udon",
+                Header = "Udon",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Udon.jpg",
+                RecipeId = id++
             });
             context.Recipes.AddOrUpdate(new Recipe()
             {
-                CategoryId = 3,
-                DateCreated = DateTime.Now,
-                Summary = "Test recipe 4",
-                Header = "Test recipe 4",
-                Content = "Test recipe 4",
-                HomeImageUrl = null,
-                RecipeId = 4
+                CategoryId = 2,
+                DateCreated = new DateTime(2019, 2, 6, 2, 6, 1, 3),
+                Summary = "Summary for lazania",
+                Header = "Lazania",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Lazania.jpg",
+                RecipeId = id++
             });
 
 
             context.Recipes.AddOrUpdate(new Recipe()
             {
                 CategoryId = 4,
-                DateCreated = DateTime.Now,
-                Summary = "Test recipe 5",
-                Header = "Test recipe 5",
-                Content = "Test recipe 5",
-                HomeImageUrl = null,
-                RecipeId = 5
+                DateCreated = new DateTime(2019, 1, 9, 4, 7, 55, 2),
+                Summary = "Summary for sushi",
+                Header = "Sushi",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Sushi.jpg",
+                RecipeId = id++
             });
+
+            context.Recipes.AddOrUpdate(new Recipe()
+            {
+                CategoryId = 3,
+                DateCreated = new DateTime(2019, 3, 8, 2, 7, 46, 1),
+                Summary = "Summary for falafel",
+                Header = "Falafel",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Falafel.jpg",
+                RecipeId = id++
+            });
+
+            context.Recipes.AddOrUpdate(new Recipe()
+            {
+                CategoryId = 7,
+                DateCreated = new DateTime(2019, 3, 3, 2, 1, 11, 1),
+                Summary = "Summary for Greek salad",
+                Header = "Greek Salad",
+                Content = "1. ....\n2. ....\n3. ....",
+                HomeImageUrl = "Recipes/Greek-Salad.jpg",
+                RecipeId = id++
+            });
+
+
         }
 
         void AddUserRecipePreference(Gosh.Models.MyDB context)
