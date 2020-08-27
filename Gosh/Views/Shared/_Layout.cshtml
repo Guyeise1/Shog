@@ -34,20 +34,7 @@
                         {
                             @Html.ActionLink("Statistics", "Index", "Graph", new { area = "" }, new { @class = "navbar-brand" })
                         }
-                        //<div class="col-sm">
-                        //<input id="title-input" type="text" class="navbar-brand" placeholder="Title" />
-                        //</div>
-
-                        //<input type="button" value="Search" class="navbar-brand" onclick="update_searched_results('articles');" />
-
-
-                        <form class="navbar-form navbar-left">
-                            <div class="form-group">
-                                <input type="text" id="title-input" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" value="search" class="btn btn-default" onclick="">Search</button>
-                        </form>
-
+                        
                     }
 
 
@@ -58,7 +45,7 @@
 
                         //<label class="label success" style="padding-top: 30"> @(Session["Username"])</label>
                         @Html.ActionLink(Session["FirstName"].ToString(), "Edit", "User", new { area = "", id = long.Parse(Session["Userid"].ToString()) }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Recommended for you", "RecommendedForYou", "Categories", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Recommended", "RecommendedForYou", "Categories", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Logout", "Logout", "User", new { area = "" }, new { @class = "navbar-brand" })
 
                     }

@@ -40,10 +40,17 @@
                     <div class="card-body">
                         <h2 class="card-titles">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
                         <div class="actionContainer">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            }
                             @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                        </div>
+
+                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                            {
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            }
+                            </div>
                     </div>
 
                     @*</td>

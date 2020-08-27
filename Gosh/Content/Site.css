@@ -56,8 +56,15 @@ textarea {
 
 .row{
     margin-top: 90px;
+        margin-left: 50px;
+
 }
 
 h2 {
     padding-left: 50px;
+}
+
+.leftPad {
+    margin-top: 5px;
+    margin-left: 100px;
 }

@@ -22,8 +22,17 @@ namespace Gosh.Controllers
         {
             return View(db.Categories.ToList());
         }
-        
-        public ActionResult RecommendedForYou()
+        public bool IsAdmin()
+        {
+            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
+        }
+        // GET: User
+
+
+
+
+
+    public ActionResult RecommendedForYou()
         {
             if(Session["Userid"] == null)
             {
@@ -55,6 +64,10 @@ namespace Gosh.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             return View();
         }
 
@@ -65,7 +78,10 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category, HttpPostedFileBase file)
         {
-
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
 
             if (file != null)
             {
@@ -88,6 +104,10 @@ namespace Gosh.Controllers
         // GET: Categories/Edit/5
         public ActionResult Edit(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,6 +139,10 @@ namespace Gosh.Controllers
         // GET: Categories/Delete/5
         public ActionResult Delete(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -149,6 +173,12 @@ namespace Gosh.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Forbidden()
+        {
+            Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            Response.StatusDescription = "You are not allowed to enter this page";
+            return View();
         }
     }
 }
