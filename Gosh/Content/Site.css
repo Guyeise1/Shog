@@ -62,9 +62,12 @@ textarea {
 
 h2 {
     padding-left: 50px;
+    text-shadow: 2px 2px 8px #4B7F4B;
 }
 
 .leftPad {
     margin-top: 5px;
     margin-left: 100px;
 }
+
+

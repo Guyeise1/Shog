@@ -13,11 +13,11 @@
 }
 
 .action {
-    color: black;
+    color: white;
     text-decoration: none;
-    background-color: #ffcc99;
+    background-color: #4B7F4B;
     border-radius: 8px;
-    border: 1px solid #ffe6cc;
+    border: 1px solid #4B7F4B;
     padding: 7px 10px;
     margin-left: 0.2em;
     width: 4.6em;
@@ -66,7 +66,7 @@
 
 .createNewButton {
     color: white;
-    background-color: #339966;
+    background-color: #4B7F4B;
     border-radius: 8px;
     border: 1px solid #4CAF50;
     padding: 7px 13px;

@@ -452,6 +452,7 @@
     <Content Include="Views\Graph\Index.cshtml" />
     <Content Include="Views\Graph\Forbidden.cshtml" />
     <Content Include="Views\Categories\Forbidden.cshtml" />
+    <Content Include="Views\Recipes\Forbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
