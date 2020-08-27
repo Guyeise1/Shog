@@ -45,18 +45,23 @@ namespace Gosh.Controllers
 
         public ActionResult GetAllCategories()
         {
+            var res = db.Categories.Select(c => new
+            {
+                CategoryName = c.CategoryName,
+                NumOfRecipes = db.Recipes.Count(r => r.CategoryId == c.ID)
+            }).ToList();
 
-            var query = db.Database.SqlQuery<QueryResult>(
-                "select CategoryName, (select count(RecipeId) from Recipes r where r.CategoryId = c.ID) as NumOfRecipes from Categories c order by c.CategoryName").ToList();
-
-            return Json(query, JsonRequestBehavior.AllowGet);
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetRecipesByYears()
         {
-            var yearsQuery = db.Database.SqlQuery<QueryResult>(
-                "SELECT YEAR(DateCreated) as year, COUNT(*) as recipes FROM Recipes GROUP BY YEAR(DateCreated)").ToList();
-            return Json(yearsQuery, JsonRequestBehavior.AllowGet);
+            var res = db.Recipes.GroupBy(r => r.DateCreated.Value.Year).Select(s => new
+            {
+                year = s.Key,
+                recipes = s.Count()
+            });
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
     }
 }
