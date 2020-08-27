@@ -11,49 +11,52 @@
 <div class="row">
     <h2>@Html.DisplayFor(model => model.CategoryName)</h2>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
+    <div>
+        <div class="containerD ">
+            @*<dt>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dd>
-            On The Map
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd>
-            <img class="img" src="~/images/@Model.ImagePath" width="200" height="270" alt="@Url.Content(Model.ImagePath)" />
-            @Html.ActionLink("Click here", "ByCategoryID", "Recipes", new { area = "", CategoryID = Html.ValueFor(model => model.ID).ToString() }, new { @class = "navbar-brand" })
-
-        </dd>
+            @*<h4>   @Html.DisplayNameFor(model => model.CategoryName) : @Html.DisplayFor(model => model.CategoryName)</h4>*@
+            <h4 class="centerText">
+                @Html.ActionLink("Click here for all the recipes", "ByCategoryID", "Recipes", new { area = "", CategoryID = Html.ValueFor(model => model.ID).ToString() }, new { @class = "" })
+                <br />
+                all are waiting for you,
+                <br />GOSH so good !
+            </h4>
 
 
-        <dd>
-            <iframe width="600"
-                    height="450"
-                    frameborder="0" style="border:0"
-                    alt="@Model.RepresetingArea"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG5D9HBeMoZRSHMu3lBsG4dA_E_a6y9aU
+            <img style="vertical-align:unset" class="img" src="~/images/@Model.ImagePath" width="300" height="300" alt="@Url.Content(Model.ImagePath)" />
+
+            @*</dd><dd>*@
+            <div>
+                <iframe width="300"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        alt="@Model.RepresetingArea"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG5D9HBeMoZRSHMu3lBsG4dA_E_a6y9aU
     &q='@Model.RepresetingArea'" allowfullscreen>
-            </iframe>
-        </dd>
-        <dt>
-            Weather
-        </dt>
-        <dd>
+                </iframe>
+            </div>
+            @*</dd>
+                <dt>*@
+            @*</dt>
+                <dd>*@
+        </div>
+
+        <div style="margin-right: 250px; margin-top: 20px;">
             <a class="weatherwidget-io" href="@Url.Content($"https://forecast7.com/en{Model.WeatherHref}")" data-label_1="@Model.RepresetingArea" data-font="Roboto" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="weather_one">@Model.RepresetingArea</a>
             <script>
                 !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
             </script>
-        </dd>
-    </dl>
+        </div>
+        @*</dd>*@
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
 
-    @*<div>
+@*<div>
         <h2 class="text-dark">Recipes</h2>
         <hr />
         <div class="categoryContainer">
@@ -66,8 +69,4 @@
         </div>
     </div>*@
 
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
