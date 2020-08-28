@@ -174,7 +174,7 @@ namespace Gosh.Controllers
         public ActionResult Index(string Header, int? categoryId, DateTime? created_after)
         {
             ViewBag.categoryId = new SelectList(db.Categories, "ID", "CategoryName");
-            return View(db.Recipes.Where(r => (r.Header.Contains(Header)  || Header == null) &&
+            return View(db.Recipes.Where(r => (Header == null || r.Header.Contains(Header) ) &&
                 (categoryId == null || r.CategoryId == categoryId) &&
                 (created_after == null || r.DateCreated >= created_after)).ToList());
         }

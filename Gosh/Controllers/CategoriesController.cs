@@ -22,10 +22,6 @@ namespace Gosh.Controllers
         }
         // GET: User
 
-
-
-
-
     public ActionResult RecommendedForYou()
         {
             if(Session["Userid"] == null)
@@ -190,7 +186,7 @@ namespace Gosh.Controllers
       
             ViewBag.area = new SelectList(db.Categories, "RepresetingArea", "RepresetingArea");
 
-            return View(db.Categories.Where(c => (c.CategoryName.Contains(name) || name == null) &&
+            return View(db.Categories.Where(c => (name == null || c.CategoryName.Contains(name) ) &&
             (area == null || c.RepresetingArea.Contains(area)) && 
             (minimumRecipeCount == null || db.Recipes.Where(r => r.CategoryId == c.ID).Count() >= minimumRecipeCount)).ToList());
         }
