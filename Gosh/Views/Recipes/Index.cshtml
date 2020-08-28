@@ -3,88 +3,75 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/category.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/recipes.css" rel="stylesheet" type="text/css" />
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Header)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Summary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm("Index", "Recipes", FormMethod.Get, new { @class = "searchContainer" }))
+    {
+        <div class="header">Name:</div>
+        @Html.TextArea("Header", new { @class = "searchByName", @placeholder = "Search Recipe..." })
+        <span class="space"></span>
+        <div class="header">Created After:</div>
+        <input type="date" name="created_after" class="searchByName" value=""/>
+        <span class="space"></span>
+        <div class="header">Category:</div>
+        @Html.DropDownList("categoryId", null, htmlAttributes: new { @class = "searchByName", @value = ""})
+        <input type="submit" value="Search" class="searchByNameButton" />
+    }
 
-    @foreach (var item in Model)
+@if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+{
+    <div class="row createNew">
+        @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
+    </div>
+}
+
+<br />
+
+
+
+
+<div class="categoryContainer">
+    @if (Model.Count() == 0)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Header)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId })
+            <td style="color:red">
+                No Match Any Document
             </td>
         </tr>
     }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="cardContainer">
 
-</table>*@
+                <div class="card" style="display: table-cell;padding-left: 25px; ">
 
-@foreach (var item in Model)
-{
-    @*<tr>
-        <td>*@
-    <div class="card" style="display: table-cell;padding-left: 25px; ">
 
-        @*</td>
-            <td>*@
-        @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-        <img class="card-img-top mt-3" src="~/images/@item.HomeImageUrl" width="150" alt="" />
-        <div class="card-body">
-            <h2 class="card-title">@Html.DisplayFor(modelItem => item.Header)</h2>
-            @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.RecipeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId })
-        </div>
+                    <img class="img" src="~/images/@item.HomeImageUrl" width="200" height="270" alt="@item.HomeImageUrl" />
+                    <div class="card-body">
+                        <h2 class="card-title">@Html.DisplayFor(modelItem => item.Header)</h2>
+                        <div class="actionContainer">
+                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                            }
+                            @if (Session["Username"] != null)
+                            {
+                                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
 
-        @*</td>
-            <td>*@
+                            }
 
-        @*</td>
-            </tr>*@
-    </div>
+                        </div>
+                    </div>
 
-}
+                </div>
+            </div>
+        }
+
+
+    }
+</div>
