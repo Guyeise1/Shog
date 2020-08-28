@@ -16,7 +16,7 @@
         <input type="date" name="created_after" class="searchByName" value=""/>
         <span class="space"></span>
         <div class="header">Category:</div>
-        @Html.DropDownList("categoryId", null, htmlAttributes: new { @class = "searchByName", @value = ""})
+        @Html.DropDownList("categoryId", null, "Select Category...", htmlAttributes: new { @class = "searchByName", @value = ""})
         <input type="submit" value="Search" class="searchByNameButton" />
     }
 

@@ -16,12 +16,6 @@ namespace Gosh.Controllers
     public class CategoriesController : Controller
     {
         private MyDB db = new MyDB();
-
-        // GET: Categories
-        public ActionResult Index()
-        {
-            return View(db.Categories.ToList());
-        }
         public bool IsAdmin()
         {
             return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
@@ -190,13 +184,14 @@ namespace Gosh.Controllers
         /// <returns>
         /// List of categories match the filetr.
         /// </returns>
-        public List<Category> Search(string name, int? minimumRecipeCount, string area)
+        public ActionResult Index(string name, int? minimumRecipeCount, string area)
         {
-           
-            return db.Categories.Where(c => (name == null || c.CategoryName.IndexOf(name) != -1) &&
-                                           (minimumRecipeCount == null || db.Recipes.Where(r=>r.CategoryId == c.ID).Count() >= minimumRecipeCount) &&
-                                           (area == null || c.RepresetingArea == area))
-                 .ToList();
+      
+            ViewBag.area = new SelectList(db.Categories, "RepresetingArea", "RepresetingArea");
+
+            return View(db.Categories.Where(c => (c.CategoryName.Contains(name) || name == null) &&
+            (area == null || c.RepresetingArea.Contains(area)) && 
+            (minimumRecipeCount == null || db.Recipes.Where(r => r.CategoryId == c.ID).Count() >= minimumRecipeCount)).ToList());
         }
     }
-}
+}   
