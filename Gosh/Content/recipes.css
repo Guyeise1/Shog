@@ -1,0 +1,37 @@
+﻿.searchContainer {
+    display:flex;
+    margin-top: 2em;
+    justify-content:center;
+}
+
+.searchByName {
+    border: solid rgb(198, 236, 217);
+    border-radius: 0.5em;
+    height: 2.5em;
+}
+.searchByNameButton {
+    border: solid rgb(198, 236, 217);
+    border-radius: 0.5em;
+    background-color: rgb(179, 229, 205);
+    padding: 0.4em;
+    margin-left: 0.5em;
+}
+
+    .searchByNameButton:hover {
+        background-color: rgb(122, 209, 167);
+    }
+
+.searchByName:focus {
+    outline: none;
+}
+
+.space {
+    width: 2em;
+}
+
+.header {
+    color: rgb(51, 153, 102);
+    font-size:1em;
+    align-self: center;
+    margin-right:0.4em;
+}
