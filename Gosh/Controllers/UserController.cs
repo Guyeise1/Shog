@@ -135,7 +135,7 @@ namespace Gosh.Controllers
         {
             try
             {
-                User usr = db.Users.Where<User>(u => u.Username == username).ToList<User>()[0];
+                User usr = db.Users.Where<User>(u => u.Username== username).ToList<User>()[0];
                 Password pwd = db.Passwords.Where<Password>(p => p.UserID == usr.ID).ToList<Password>()[0];
                 if (Password.Check(password, pwd))
                 {
@@ -172,6 +172,7 @@ namespace Gosh.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(long? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -208,6 +209,10 @@ namespace Gosh.Controllers
         // GET: User/Delete/5
         public ActionResult Delete(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -225,6 +230,10 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
