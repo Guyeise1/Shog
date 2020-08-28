@@ -62,8 +62,19 @@ textarea {
 
 h2 {
     padding-left: 50px;
-    text-shadow: 2px 2px 8px #4B7F4B;
+    padding-left: 100px;
+    text-shadow: 1px 1px 3px #4B7F4B;
+    color: #4B7F4B;
 }
+
+label {
+    color: #4B7F4B;
+}
+
+dl {
+    color: #4B7F4B;
+}
+
 
 .leftPad {
     margin-top: 5px;
@@ -75,10 +86,45 @@ h2 {
     column-gap: 50px;
     margin-right: 250px;
 }
+.containerD2 {
+    column-count: 2;
+    column-gap: 50px;
+    margin-right: 250px;
+}
 
 .centerText {
     text-align: center;
     line-height: 1.6;
 }
 
+
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="datetime"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="search"],
+.form-group input[type="password"],
+.form-group input[type="time"],
+.form-group input[type="url"],
+.form-group textarea {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+}
 
