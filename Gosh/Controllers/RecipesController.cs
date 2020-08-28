@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
 
@@ -17,11 +18,17 @@ namespace Gosh.Controllers
     {
         private MyDB db = new MyDB();
 
-        // GET: Recipes
-        public ActionResult Index()
-        {
+        //// GET: Recipes
+        //public ActionResult Index()
+        //{
             
-            return View(db.Recipes.ToList());
+        //    return View(db.Recipes.ToList());
+        //}
+        // string[] because this is how View sends the id...
+        public ActionResult ByCategoryID(string[] CategoryID)
+        {
+            int ID = int.Parse(((string[])CategoryID)[0]);
+            return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
         }
 
         // GET: Recipes/Details/5
@@ -36,12 +43,26 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
+
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
+
+            new RecipeLearning().SavePreference((long)Session["Userid"], (int)id);
+
             return View(recipe);
         }
 
         // GET: Recipes/Create
         public ActionResult Create()
         {
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             ViewBag.Categories = new SelectList(db.Categories, "ID", "CategoryName");
             return View();
         }
@@ -51,7 +72,7 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
+        public ActionResult Create([Bind(Include = "RecipeId,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
         {
 
             string path = Path.Combine(Server.MapPath("~/Images"),
@@ -60,6 +81,7 @@ namespace Gosh.Controllers
             recipe.HomeImageUrl = Imagefile.FileName;
             if (ModelState.IsValid)
             {
+                recipe.DateCreated = DateTime.Now;
                 db.Recipes.Add(recipe);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -132,6 +154,33 @@ namespace Gosh.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Search recipes by filters
+        /// </summary>
+        /// <param name="Header">
+        /// If our recipe header contains the given parameter. REGEXP - *name*
+        /// </param>
+        /// <param name="C">
+        /// If our recipe is in the given catergory C.
+        /// </param>
+        /// <param name="created_after">
+        /// If the recipe created after the given date.
+        /// </param>
+        /// <returns>
+        /// List of all recipes fits to all conditions.
+        /// </returns>
+        public ActionResult Index(string Header, int? categoryId, DateTime? created_after)
+        {
+            Console.WriteLine("header");
+            Console.WriteLine(Header);
+            Console.WriteLine(categoryId);
+            Console.WriteLine(created_after);
+            ViewBag.categoryId = new SelectList(db.Categories, "ID", "CategoryName");
+            return View(db.Recipes.Where(r => (r.Header.Contains(Header)  || Header == null) &&
+                (categoryId == null || r.CategoryId == categoryId) &&
+                (created_after == null || r.DateCreated >= created_after)).ToList());
         }
     }
 }
