@@ -36,26 +36,7 @@ namespace Gosh.Controllers
 
             return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
         }
-        public bool IsAdmin()
-        {
-            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
-        }
         // GET: User
-
-
-
-
-
-    public ActionResult RecommendedForYou()
-        {
-            if(Session["Userid"] == null)
-            {
-                // return new UserController().Forbidden();
-                return RedirectToAction("Forbidden", "User");
-            }
-
-            return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
-        }
 
         // GET: Categories/Details/5
         public async Task<ActionResult> Details(long? id)
