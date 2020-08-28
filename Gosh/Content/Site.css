@@ -17,7 +17,11 @@ textarea {
 }
 
 .category-item {
-    display: flex;
+    /* display: flex;
     box-sizing: border-box;
-    margin: 0 10px 30px 10px;
+    margin: 0 10px 30px 10px;*/
+    background-color: #eeeeee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    margin-top: 2vh;
+    padding-bottom: 1vh;
 }
