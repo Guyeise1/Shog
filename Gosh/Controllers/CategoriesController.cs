@@ -106,7 +106,7 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden","User");
             }
             if (id == null)
             {
