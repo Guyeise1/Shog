@@ -72,7 +72,7 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
+        public ActionResult Create([Bind(Include = "RecipeId,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe, HttpPostedFileBase Imagefile)
         {
 
             string path = Path.Combine(Server.MapPath("~/Images"),
@@ -81,6 +81,7 @@ namespace Gosh.Controllers
             recipe.HomeImageUrl = Imagefile.FileName;
             if (ModelState.IsValid)
             {
+                recipe.DateCreated = DateTime.Now;
                 db.Recipes.Add(recipe);
                 db.SaveChanges();
                 return RedirectToAction("Index");

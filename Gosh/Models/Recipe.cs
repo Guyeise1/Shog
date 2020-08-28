@@ -23,8 +23,10 @@ namespace Gosh.Models
         public string Summary { get; set; }
 
         [DisplayName("Recipe Ingredients & Directions ")]
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
+        [DisplayName("Image")]
         public string HomeImageUrl { get; set; }
 
         [DisplayName("Category")]
