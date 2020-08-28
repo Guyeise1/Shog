@@ -66,7 +66,7 @@ namespace Gosh.Controllers.Statistics
             {
                 if(i < lst.Count)
                 {
-                    int CategoryID = lst[i].categoryID;
+                    long CategoryID = lst[i].categoryID;
                     Category c = db.Categories.Where(x => x.ID == CategoryID).First();
                     ret.Add(c);
                 }

@@ -58,6 +58,11 @@ namespace Gosh.Controllers
         // GET: Recipes/Create
         public ActionResult Create()
         {
+            // User must be logged in to see recipies
+            if (Session["Userid"] == null)
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             ViewBag.Categories = new SelectList(db.Categories, "ID", "CategoryName");
             return View();
         }

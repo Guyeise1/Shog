@@ -139,6 +139,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\category.css" />
     <Content Include="Content\Images\appleDisplay.jpg" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\nav-image.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -407,6 +409,10 @@
     <Compile Include="Migrations\202008241016500_UserRecipePreference.designer.cs">
       <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008280829077_ForiegnKey.cs" />
+    <Compile Include="Migrations\202008280829077_ForiegnKey.designer.cs">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -448,6 +454,9 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Shared\_RecipeHorizontal.cshtml" />
     <Content Include="Views\Graph\Index.cshtml" />
+    <Content Include="Views\Graph\Forbidden.cshtml" />
+    <Content Include="Views\Categories\Forbidden.cshtml" />
+    <Content Include="Views\Recipes\Forbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -477,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008241016500_UserRecipePreference.resx">
       <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008280829077_ForiegnKey.resx">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

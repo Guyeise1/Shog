@@ -25,3 +25,60 @@ textarea {
     margin-top: 2vh;
     padding-bottom: 1vh;
 }
+
+.nav-style {
+    background: url('Images/nav-image.png');
+    background-image: url("Images/nav-image.png");
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+.navbar-brand a {
+    color: white;
+}
+
+
+
+.navbar {
+    height: 100px;
+    border: 100px;
+    color: white;
+}
+
+.container {
+    margin-top: 40px;
+    color: white;
+    background-color: slategrey;
+    border-radius: 1em;
+    opacity: 0.9;
+}
+
+.row{
+    margin-top: 40px;
+        margin-left: 50px;
+/*        display:inline;
+*/}
+
+h2 {
+    padding-left: 50px;
+    text-shadow: 2px 2px 8px #4B7F4B;
+}
+
+.leftPad {
+    margin-top: 5px;
+    margin-left: 100px;
+}
+
+.containerD {
+    column-count: 3;
+    column-gap: 50px;
+    margin-right: 250px;
+}
+
+.centerText {
+    text-align: center;
+    line-height: 1.6;
+}
+
+

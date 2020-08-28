@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace Gosh.Models
 {
     public class Recipe
     {
-        public int RecipeId { get; set; }
+        public long RecipeId { get; set; }
 
         [DisplayName("Creation Date")]
         [DataType(DataType.Date)]
@@ -27,7 +28,8 @@ namespace Gosh.Models
         public string HomeImageUrl { get; set; }
 
         [DisplayName("Category")]
-        public int CategoryId { get; set; }
+        [ForeignKey("Category")]
+        public long CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
