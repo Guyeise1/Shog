@@ -18,23 +18,26 @@
         <th></th>
     </tr>*@
 
+@if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+{
     <div class="row createNew">
         @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
     </div>
+}
     <br />
-    
+
     <div class="categoryContainer">
         @foreach (var item in Model)
         {
 
             @*<tr>
-            <td>*@
+                <td>*@
             <div class="cardContainer">
 
                 <div class="card" style="display: table-cell;padding-left: 25px; ">
 
                     @*</td>
-                    <td>*@
+                        <td>*@
                     @*@Html.DisplayFor(modelItem => item.ImagePath)*@
                     <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.ImagePath" />
                     <div class="card-body">
@@ -43,21 +46,17 @@
                             @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                             {
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                            }
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-
-                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-                            {
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
                             }
-                            </div>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                        </div>
                     </div>
 
                     @*</td>
-                    <td>*@
+                        <td>*@
 
                     @*</td>
-                    </tr>*@
+                        </tr>*@
                 </div>
             </div>
 

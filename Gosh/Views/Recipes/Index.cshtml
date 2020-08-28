@@ -3,11 +3,17 @@
 @{
     ViewBag.Title = "Index";
 }
-    <link href="~/Content/category.css" rel="stylesheet" type="text/css" />
-<div class="row createNew">
-    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
-</div>
+<link href="~/Content/category.css" rel="stylesheet" type="text/css" />
+
+@if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+{
+    <div class="row createNew">
+        @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
+    </div>
+}
+
 <br />
+
 
 
 
@@ -25,9 +31,17 @@
                 <div class="card-body">
                     <h2 class="card-title">@Html.DisplayFor(modelItem => item.Header)</h2>
                     <div class="actionContainer">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
-                        @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                        @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                        }
+                        @if (Session["Username"] != null)
+                        {
+                            @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+
+                        }
+
                     </div>
                 </div>
 
