@@ -51,13 +51,8 @@
         @*</dd>*@
     </div>
     <p>
-
-        @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-        {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
-        }
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
         @Html.ActionLink("Back to List", "Index")
-
     </p>
 </div>
 

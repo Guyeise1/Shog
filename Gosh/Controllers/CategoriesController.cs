@@ -22,6 +22,10 @@ namespace Gosh.Controllers
         {
             return View(db.Categories.ToList());
         }
+        public bool IsAdmin()
+        {
+            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
+        }
         // GET: User
 
 
@@ -60,7 +64,7 @@ namespace Gosh.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            if (!IsAdmin())
             {
                 return RedirectToAction("Forbidden", "User");
             }
@@ -74,7 +78,7 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category, HttpPostedFileBase file)
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            if (!IsAdmin())
             {
                 return RedirectToAction("Forbidden", "User");
             }
@@ -100,9 +104,9 @@ namespace Gosh.Controllers
         // GET: Categories/Edit/5
         public ActionResult Edit(long? id)
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden", "User");
+                return RedirectToAction("Forbidden","User");
             }
             if (id == null)
             {
@@ -123,10 +127,6 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category)
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
-            {
-                return RedirectToAction("Forbidden", "User");
-            }
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
@@ -139,7 +139,7 @@ namespace Gosh.Controllers
         // GET: Categories/Delete/5
         public ActionResult Delete(long? id)
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            if (!IsAdmin())
             {
                 return RedirectToAction("Forbidden", "User");
             }
@@ -160,10 +160,6 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
-            {
-                return RedirectToAction("Forbidden", "User");
-            }
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();
