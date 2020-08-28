@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Gosh.Controllers.Statistics;
 using Gosh.Models;
 
 namespace Gosh.Controllers
@@ -20,6 +21,26 @@ namespace Gosh.Controllers
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
+        }
+        public bool IsAdmin()
+        {
+            return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
+        }
+        // GET: User
+
+
+
+
+
+    public ActionResult RecommendedForYou()
+        {
+            if(Session["Userid"] == null)
+            {
+                // return new UserController().Forbidden();
+                return RedirectToAction("Forbidden", "User");
+            }
+
+            return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
         }
 
         // GET: Categories/Details/5
@@ -43,6 +64,10 @@ namespace Gosh.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             return View();
         }
 
@@ -53,7 +78,10 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CategoryName,ImagePath,RepresetingArea,WeatherHref")] Category category, HttpPostedFileBase file)
         {
-
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
 
             if (file != null)
             {
@@ -76,6 +104,10 @@ namespace Gosh.Controllers
         // GET: Categories/Edit/5
         public ActionResult Edit(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden","User");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,6 +139,10 @@ namespace Gosh.Controllers
         // GET: Categories/Delete/5
         public ActionResult Delete(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -137,6 +173,30 @@ namespace Gosh.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Search category by the given filters
+        /// </summary>
+        /// <param name="name">
+        /// If our category name contains the given parameter. REGEXP - *name*
+        /// </param>
+        /// <param name="minimumRecipeCount">
+        /// If our category has more than the given value recipes.
+        /// </param>
+        /// <param name="area">
+        /// If the category in the given area (drop down list).
+        /// </param>
+        /// <returns>
+        /// List of categories match the filetr.
+        /// </returns>
+        public List<Category> Search(string name, int? minimumRecipeCount, string area)
+        {
+           
+            return db.Categories.Where(c => (name == null || c.CategoryName.IndexOf(name) != -1) &&
+                                           (minimumRecipeCount == null || db.Recipes.Where(r=>r.CategoryId == c.ID).Count() >= minimumRecipeCount) &&
+                                           (area == null || c.RepresetingArea == area))
+                 .ToList();
         }
     }
 }

@@ -20,5 +20,7 @@ namespace Gosh.Models
         public System.Data.Entity.DbSet<Gosh.Models.Password> Passwords{ get; set; }
 
         public System.Data.Entity.DbSet<Gosh.Models.Recipe> Recipes { get; set; }
+
+        public System.Data.Entity.DbSet<Gosh.Models.UserRecipePreference> userRecipePreferences { get; set; }
     }
 }

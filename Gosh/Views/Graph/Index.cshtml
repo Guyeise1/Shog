@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <style>
+        .dataContainer {
+            margin-left: 1em;
+            margin-top: 1em;
+        }
+
+        .lable {
+            font-family: sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .insideText {
+            font-family: sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            fill: white;
+        }
+
+        .firstHeader {
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            font-family: sans-serif;
+            font-size: 3em;
+            text-shadow: 0.1em 0.1em 0.1em lightpink;
+            font-weight: bold;
+        }
+
+        .secondHeader {
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            font-family: sans-serif;
+            font-size: 3em;
+            text-shadow: 0.1em 0.1em 0.1em lightgreen;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <div class="firstHeader">Top category by recipes</div>
+    <div class="dataContainer"></div>
+    <div class="secondHeader">The leading year in creating recipes</div>
+    <div class="byYears"></div>
+    <script>
+
+        d3.json("/Graph/GetAllCategories", function (data) {
+            var canvas = d3.select(".dataContainer").append("svg")
+                .attr("width", 1000)
+                .attr("height", 700);
+
+            canvas.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("width", function (d) {
+                    return d.NumOfRecipes * 60 + 5;
+                })
+                .attr("height", 50)
+                .attr("y", function (d, i) {
+                    return i * 80
+                })
+                .attr("fill", "lightpink");
+
+            canvas.selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("fill", "black")
+                .attr("y", function (d, i) {
+                    return i * 80 + 30
+                })
+                .attr("x", 5)
+                .text(function (d) {
+                    return d.CategoryName + " : " + d.NumOfRecipes;
+                })
+
+        })
+
+        var colors = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var svg = d3.select(".byYears").append("svg")
+            .attr("width", 1000)
+            .attr("height", 500)
+            .style("background", "white");
+
+        d3.json("/Graph/GetRecipesByYears", function (details) {
+            var detailsArray = [];
+            details.forEach(detail => detailsArray.push({ year: detail.year, recipes: detail.recipes }));
+            console.log(detailsArray);
+            var data = d3.pie().sort(null).value(function (d) { return d.recipes; })
+                (detailsArray);
+            console.log(data);
+
+            var segments = d3.arc()
+                .innerRadius(0)
+                .outerRadius(200)
+                .padAngle(.05)
+                .padRadius(50);
+
+            var sections = svg.append("g").attr("transform", "translate(250, 250)")
+                .selectAll("path").data(data);
+
+            sections.enter().append("path").attr("d", segments).attr("fill",
+                function (d) { return colors(d.data.year); });
+
+            var content = d3.select("g").selectAll(".text").data(data);
+            content.enter().append("text").classed("insideText", true).each(function (d) {
+                var center = segments.centroid(d);
+                d3.select(this).attr("x", center[0]).attr("y", center[1])
+                    .text(d.data.recipes);
+            })
+
+            var legends = svg.append("g").attr("transform", "translate(500, 300)")
+                .selectAll(".legends").data(data);
+            var legend = legends.enter().append("g").classed("legends", true)
+                .attr("transform", function (d, i) {
+                    return "translate(0," + (i - 8) * 30 + ")";
+                });
+            legend.append("rect").attr("width", 20).attr("height", 20)
+                .attr("fill", function (d) { return colors(d.data.year); });
+            legend.append("text").classed("label", true).text(function (d) { return d.data.year; })
+                .attr("fill", function (d) { return colors(d.data.year); })
+                .attr("x", 30)
+                .attr("y", 15);
+
+        })
+    </script>
+
+</body>

@@ -61,6 +61,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId }) |
+    @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId })
+    }
+
     @Html.ActionLink("Back to List", "Index")
 </p>

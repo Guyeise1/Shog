@@ -139,6 +139,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\category.css" />
     <Content Include="Content\Images\appleDisplay.jpg" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\nav-image.png" />
+    <Content Include="Content\recipes.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -364,6 +367,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Home\Chart.js" />
+    <Content Include="Views\Recipes\Style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -372,8 +377,10 @@
     <Compile Include="Controllers\API\TweeterUpdateRetviver.cs" />
     <Compile Include="Controllers\API\UpdateRetviver.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspirationController.cs" />
+    <Compile Include="Controllers\Statistics\RecipeLearning.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -400,6 +407,14 @@
     <Compile Include="Migrations\202008221131110_recipesUpdate.designer.cs">
       <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.cs" />
+    <Compile Include="Migrations\202008241016500_UserRecipePreference.designer.cs">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008280829077_ForiegnKey.cs" />
+    <Compile Include="Migrations\202008280829077_ForiegnKey.designer.cs">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -407,6 +422,7 @@
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\MyDB.cs" />
+    <Compile Include="Models\UserRecipePreference.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -439,6 +455,10 @@
     <Content Include="Views\Recipes\Edit.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Shared\_RecipeHorizontal.cshtml" />
+    <Content Include="Views\Graph\Index.cshtml" />
+    <Content Include="Views\Graph\Forbidden.cshtml" />
+    <Content Include="Views\Categories\Forbidden.cshtml" />
+    <Content Include="Views\Recipes\Forbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -465,6 +485,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008221131110_recipesUpdate.resx">
       <DependentUpon>202008221131110_recipesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008241016500_UserRecipePreference.resx">
+      <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008280829077_ForiegnKey.resx">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
