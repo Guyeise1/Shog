@@ -53,7 +53,6 @@ namespace Gosh.Controllers.Statistics
             var query = from p in db.userRecipePreferences
                         where p.UserID == UserID
                         group p by p.Recipe.CategoryId into g
-        
                         select new
                         {
                             categoryID = g.Key,

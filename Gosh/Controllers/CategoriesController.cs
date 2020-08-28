@@ -174,5 +174,29 @@ namespace Gosh.Controllers
             }
             base.Dispose(disposing);
         }
+
+        /// <summary>
+        /// Search category by the given filters
+        /// </summary>
+        /// <param name="name">
+        /// If our category name contains the given parameter. REGEXP - *name*
+        /// </param>
+        /// <param name="minimumRecipeCount">
+        /// If our category has more than the given value recipes.
+        /// </param>
+        /// <param name="area">
+        /// If the category in the given area (drop down list).
+        /// </param>
+        /// <returns>
+        /// List of categories match the filetr.
+        /// </returns>
+        public List<Category> Search(string name, int? minimumRecipeCount, string area)
+        {
+           
+            return db.Categories.Where(c => (name == null || c.CategoryName.IndexOf(name) != -1) &&
+                                           (minimumRecipeCount == null || db.Recipes.Where(r=>r.CategoryId == c.ID).Count() >= minimumRecipeCount) &&
+                                           (area == null || c.RepresetingArea == area))
+                 .ToList();
+        }
     }
 }
