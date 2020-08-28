@@ -66,7 +66,7 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden", "User");
             }
             return View();
         }
@@ -80,7 +80,7 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden", "User");
             }
 
             if (file != null)
@@ -141,7 +141,7 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden", "User");
             }
             if (id == null)
             {
@@ -173,12 +173,6 @@ namespace Gosh.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public ActionResult Forbidden()
-        {
-            Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            Response.StatusDescription = "You are not allowed to enter this page";
-            return View();
         }
     }
 }

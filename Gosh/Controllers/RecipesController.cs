@@ -154,11 +154,5 @@ namespace Gosh.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Forbidden()
-        {
-            Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            Response.StatusDescription = "You are not allowed to enter this page";
-            return View();
-        }
     }
 }
