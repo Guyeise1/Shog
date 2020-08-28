@@ -53,7 +53,6 @@ namespace Gosh.Controllers.Statistics
             var query = from p in db.userRecipePreferences
                         where p.UserID == UserID
                         group p by p.Recipe.CategoryId into g
-        
                         select new
                         {
                             categoryID = g.Key,
@@ -67,7 +66,7 @@ namespace Gosh.Controllers.Statistics
             {
                 if(i < lst.Count)
                 {
-                    int CategoryID = lst[i].categoryID;
+                    long CategoryID = lst[i].categoryID;
                     Category c = db.Categories.Where(x => x.ID == CategoryID).First();
                     ret.Add(c);
                 }

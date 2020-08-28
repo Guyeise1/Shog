@@ -15,6 +15,7 @@ namespace Gosh.Models
         public byte[] Salt { get; set; }
 
         [Index("IX_PWD_USER_UNIQUE", IsUnique = true)]
+        [ForeignKey("User")]
         public long UserID { get; set; }
         public User User { get; set; }
     

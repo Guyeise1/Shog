@@ -154,11 +154,27 @@ namespace Gosh.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Forbidden()
+
+        /// <summary>
+        /// Search recipes by filters
+        /// </summary>
+        /// <param name="Header">
+        /// If our recipe header contains the given parameter. REGEXP - *name*
+        /// </param>
+        /// <param name="C">
+        /// If our recipe is in the given catergory C.
+        /// </param>
+        /// <param name="created_after">
+        /// If the recipe created after the given date.
+        /// </param>
+        /// <returns>
+        /// List of all recipes fits to all conditions.
+        /// </returns>
+        public List<Recipe> Search(string Header, Category C, DateTime created_after)
         {
-            Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            Response.StatusDescription = "You are not allowed to enter this page";
-            return View();
+            return db.Recipes.Where(r => (Header == null || r.Header.IndexOf(Header) != -1) && 
+                                         (C == null || r.Category.ID == C.ID) && 
+                                         (created_after == null || r.DateCreated >= created_after) ).ToList();
         }
     }
 }

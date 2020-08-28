@@ -409,6 +409,10 @@
     <Compile Include="Migrations\202008241016500_UserRecipePreference.designer.cs">
       <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008280829077_ForiegnKey.cs" />
+    <Compile Include="Migrations\202008280829077_ForiegnKey.designer.cs">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Address.cs" />
@@ -482,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008241016500_UserRecipePreference.resx">
       <DependentUpon>202008241016500_UserRecipePreference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008280829077_ForiegnKey.resx">
+      <DependentUpon>202008280829077_ForiegnKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
