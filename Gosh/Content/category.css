@@ -36,9 +36,6 @@
     object-fit:cover;
 }
 
-    .img:hover {
-        transform: scale(1.2);
-    }
 
 .container {
     display: flex;
