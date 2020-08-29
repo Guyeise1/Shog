@@ -135,8 +135,6 @@
                 WeatherHref = "/31d23121d47/shanghai/",
                 ID = 9
             });
-
-
         }
 
         void AddRecipies(Gosh.Models.MyDB context)

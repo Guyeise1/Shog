@@ -18,19 +18,19 @@ namespace Gosh.Controllers
     {
         private MyDB db = new MyDB();
 
-        // GET: Recipes
-        public ActionResult Index()
-        {
+        //// GET: Recipes
+        //public ActionResult Index()
+        //{
             
-            return View(db.Recipes.ToList());
-        }
+        //    return View(db.Recipes.ToList());
+        //}
         // string[] because this is how View sends the id...
         public ActionResult ByCategoryID(string[] CategoryID)
         {
             int ID = int.Parse(((string[])CategoryID)[0]);
             return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
         }
-
+       
         // GET: Recipes/Details/5
         public ActionResult Details(int? id)
         {
@@ -171,11 +171,12 @@ namespace Gosh.Controllers
         /// <returns>
         /// List of all recipes fits to all conditions.
         /// </returns>
-        public List<Recipe> Search(string Header, Category C, DateTime created_after)
+        public ActionResult Index(string Header, int? categoryId, DateTime? created_after)
         {
-            return db.Recipes.Where(r => (Header == null || r.Header.IndexOf(Header) != -1) && 
-                                         (C == null || r.Category.ID == C.ID) && 
-                                         (created_after == null || r.DateCreated >= created_after) ).ToList();
+            ViewBag.categoryId = new SelectList(db.Categories, "ID", "CategoryName");
+            return View(db.Recipes.Where(r => (Header == null || r.Header.Contains(Header) ) &&
+                (categoryId == null || r.CategoryId == categoryId) &&
+                (created_after == null || r.DateCreated >= created_after)).ToList());
         }
     }
 }

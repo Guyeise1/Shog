@@ -141,6 +141,7 @@
     <Content Include="Content\Images\appleDisplay.jpg" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\nav-image.png" />
+    <Content Include="Content\recipes.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -367,6 +368,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Home\Chart.js" />
+    <Content Include="Views\Recipes\Style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
