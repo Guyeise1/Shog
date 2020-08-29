@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -192,11 +191,10 @@ namespace Gosh.Controllers
             }
             if (!IsAdmin() && ((Session["Userid"] == null || Convert.ToInt64(Session["Userid"]) != user.ID)))
             {
-                return RedirectToAction("Forbidden");
+                return View(user);
             }
 
-            return View(user);
-
+            return RedirectToAction("Forbidden");
         }
 
         // POST: User/Edit/5
@@ -204,20 +202,15 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Mail,PhoneNumber")] User user)
+        public ActionResult Edit([Bind(Include = "ID,Username,Password,FirstName,LastName,Mail,CreditCard,PhoneNumber")] User user)
         {
-            if (!IsAdmin() && ((Session["Userid"] == null || Convert.ToInt64(Session["Userid"]) != user.ID)))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Forbidden");
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            User fromDB = db.Users.Where(u => user.ID == u.ID).First();
-            fromDB.FirstName = user.FirstName;
-            fromDB.LastName = user.LastName;
-            fromDB.Mail = user.Mail;
-            fromDB.PhoneNumber = user.PhoneNumber;
-            db.Users.AddOrUpdate(fromDB);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return View(user);
         }
 
         // GET: User/Delete/5
