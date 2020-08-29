@@ -5,11 +5,10 @@
 
 
 <h3>Look at what others cook just so you will get new ideas...</h3>
-<table class="p-3 ">
     <div id="updates" class="col-md-12 container" >
 
     </div>
-</table>
+
 
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript">
@@ -44,7 +43,7 @@
                     }).append(
                         $("<a>", {
                             href: updateUrl,
-                            style:"color:white"
+                            style:"color:black"
                         }).append(
                         $("<div>", {
                             
@@ -74,3 +73,9 @@
             type: 'GET'
         });
     </script>
+
+<style>
+    #updates {
+        background-color: white;
+    }
+</style>

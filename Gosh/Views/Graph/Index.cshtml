@@ -3,6 +3,9 @@
 
 <head>
     <style>
+        ul {
+            columns: 2;
+        }
         .dataContainer {
             margin-left: 1em;
             margin-top: 1em;
@@ -48,10 +51,15 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
 
-    <div class="firstHeader">Top category by recipes</div>
-    <div class="dataContainer"></div>
-    <div class="secondHeader">The leading year in creating recipes</div>
-    <div class="byYears"></div>
+    <ul>
+        <li>
+            <div class="firstHeader">Top category by recipes</div>
+            <div class="dataContainer"></div>
+        </li>
+        <li>
+            <div class="secondHeader">The leading year in creating recipes</div>
+            <div class="byYears"></div>
+        </li>
     <script>
 
         d3.json("/Graph/GetAllCategories", function (data) {

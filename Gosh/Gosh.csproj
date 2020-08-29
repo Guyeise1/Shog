@@ -137,11 +137,9 @@
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\category.css" />
     <Content Include="Content\Images\appleDisplay.jpg" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\nav-image.png" />
-    <Content Include="Content\recipes.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Folder.DotSettings.user" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -456,8 +454,6 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Shared\_RecipeHorizontal.cshtml" />
     <Content Include="Views\Graph\Index.cshtml" />
-    <Content Include="Views\Graph\Forbidden.cshtml" />
-    <Content Include="Views\Categories\Forbidden.cshtml" />
     <Content Include="Views\Recipes\Forbidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

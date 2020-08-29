@@ -31,16 +31,9 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden","User");
             }
             return View(db.Categories.ToList());
-        }
-
-        public ActionResult Forbidden()
-        {
-            Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            Response.StatusDescription = "You are not allowed to enter this page";
-            return View();
         }
 
         public ActionResult GetAllCategories()
