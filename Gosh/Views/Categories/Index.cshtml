@@ -37,7 +37,10 @@
     <input type="number" name="minimumRecipeCount" class="searchByName" />
     <span class="space"></span>
     <div class="header">Area:</div>
-    @Html.DropDownList("area", null,"Select Area...", htmlAttributes: new { @class = "searchByName" })
+    if (ViewBag.area != null)
+    {
+        @Html.DropDownList("area", null, "Select Area...", htmlAttributes: new { @class = "searchByName" })
+    }
     <input type="submit" value="Search" class="searchByNameButton" />
 }
 
