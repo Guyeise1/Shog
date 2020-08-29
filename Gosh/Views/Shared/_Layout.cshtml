@@ -30,7 +30,7 @@
                     @Html.ActionLink("Suprise", "Index", "Inspiration", new { area = "" }, new { @class = "navbar-brand" })
                     if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                     {
-                        @Html.ActionLink("All Users", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Users", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
                     }
 
                     if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
