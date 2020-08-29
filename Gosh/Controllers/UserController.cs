@@ -191,10 +191,10 @@ namespace Gosh.Controllers
             }
             if (!IsAdmin() && ((Session["Userid"] == null || Convert.ToInt64(Session["Userid"]) != user.ID)))
             {
-                return View(user);
+                return RedirectToAction("Forbidden");
             }
 
-            return RedirectToAction("Forbidden");
+            return View(user);
         }
 
         // POST: User/Edit/5
