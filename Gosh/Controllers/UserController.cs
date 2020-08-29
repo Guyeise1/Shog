@@ -181,12 +181,20 @@ namespace Gosh.Controllers
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return HttpNotFound();
+                if (IsAdmin())
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    return RedirectToAction("Forbidden");
+                }
             }
-            if (!IsAdmin() && ((Session["Userid"] == null || Session["Username"].ToString().ToUpper() != user.Username.ToUpper())))
+            if (!IsAdmin() && ((Session["Userid"] == null || Convert.ToInt64(Session["Userid"]) != user.ID)))
             {
                 return RedirectToAction("Forbidden");
             }
+
             return View(user);
 
         }
