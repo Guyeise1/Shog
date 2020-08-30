@@ -38,42 +38,76 @@
 <div class="categoryContainer">
     @if (Model.Count() == 0)
     {
-        <tr>
-            <td style="color:red">
+            <p style="color:red">
                 No Match Any Document
-            </td>
-        </tr>
+            </p>
     }
     else
     {
-        foreach (var item in Model)
-        {
-            <div class="cardContainer">
-
-                <div class="card" style="display: table-cell;padding-left: 25px; ">
-
-
-                    <img class="img" src="~/images/@item.HomeImageUrl" width="200" height="270" alt="@item.HomeImageUrl" />
-                    <div class="card-body">
-                        <h2 class="card-title">@Html.DisplayFor(modelItem => item.Header)</h2>
-                        <div class="actionContainer">
-                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-                            {
-                                @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
-                            }
-                            @if (Session["Username"] != null)
-                            {
-                                @Html.ActionLink("Details", "Details", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
-
-                            }
-
-                        </div>
-                    </div>
-
+<ul>
+    @foreach (var item in Model)
+    {
+    <a href="Recipes/Details/@item.RecipeId">
+        <li class="gallery">
+                <img class="img rounded" src="~/images/@item.HomeImageUrl" alt="@item.Header" />
+                <div class="desc">
+                    
+                    @item.Header
                 </div>
-            </div>
-        }
+                <div class="buttons">
+                    @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
+                    }
+                </div>
+        </li>
+    </a>
+    }
+</ul>
 
     }
 </div>
+
+
+<style>
+    li.gallery {
+        margin: 5px;
+        border: 1px solid #ccc;
+        float: left;
+        width: 180px;
+        height: 300px;
+        padding-bottom: 50px;
+
+    }
+
+        li.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        li.gallery img {
+            margin-top: 15%;
+            width:100%;
+        }
+    ul {
+        width: 50%;
+        margin: auto;
+        list-style-type: none;
+    }
+    a {
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: black;
+    }
+    div.desc {
+        padding: 15px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .buttons {
+        margin:auto;
+        width: 50%;
+    }
+</style>

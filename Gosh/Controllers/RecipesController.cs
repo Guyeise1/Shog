@@ -27,7 +27,7 @@ namespace Gosh.Controllers
         // string[] because this is how View sends the id...
         public ActionResult ByCategoryID(string[] CategoryID)
         {
-            int ID = int.Parse(((string[])CategoryID)[0]);
+            long ID = long.Parse(((string[])CategoryID)[0]);
             return View("Index",db.Recipes.Where(r => r.CategoryId == ID).ToList());
         }
        

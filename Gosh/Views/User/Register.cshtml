@@ -63,8 +63,10 @@
 
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Register</button>
+                        <button type="submit" class="btn createNewButton"> Register</button>
+                        @Html.ActionLink("Back", "Index", "Home")
                     </div> <!-- form-group// -->
+
                 </form>
 
             </div>
@@ -74,6 +76,11 @@
 
 }
 
-<div>
-    @Html.ActionLink("Back", "Index", "Home")
-</div>
+
+
+<style>
+    button {
+        background-color: #4B7F4B;
+        color: white;
+    }
+</style>
