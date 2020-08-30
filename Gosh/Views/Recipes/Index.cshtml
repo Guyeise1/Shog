@@ -44,70 +44,30 @@
     }
     else
     {
-<ul>
+<div class="pageContainer">
     @foreach (var item in Model)
     {
     <a href="Recipes/Details/@item.RecipeId">
-        <li class="gallery">
-                <img class="img rounded" src="~/images/@item.HomeImageUrl" alt="@item.Header" />
-                <div class="desc">
-                    
+        <div class="cardContainer">
+            <img class="img rounded" src="~/images/@item.HomeImageUrl" alt="@item.Header" />
+            <div class="card-body">
+                <h4 class="card-titles">
                     @item.Header
-                </div>
-                <div class="buttons">
+                </h4>
+                <div class="actionContainer">
                     @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
                         @Html.ActionLink("Delete", "Delete", new { id = item.RecipeId }, htmlAttributes: new { @class = "action" })
                     }
                 </div>
-        </li>
-    </a>
+                </div>
+            </div>
+</a>
     }
-</ul>
+</div>
 
     }
 </div>
 
 
-<style>
-    li.gallery {
-        margin: 5px;
-        border: 1px solid #ccc;
-        float: left;
-        width: 180px;
-        height: 300px;
-        padding-bottom: 50px;
-
-    }
-
-        li.gallery:hover {
-            border: 1px solid #777;
-        }
-
-        li.gallery img {
-            margin-top: 15%;
-            width:100%;
-        }
-    ul {
-        width: 50%;
-        margin: auto;
-        list-style-type: none;
-    }
-    a {
-        color: black;
-    }
-    a:hover {
-        text-decoration: none;
-        color: black;
-    }
-    div.desc {
-        padding: 15px;
-        text-align: center;
-        font-size: 15px;
-    }
-    .buttons {
-        margin:auto;
-        width: 50%;
-    }
-</style>

@@ -55,37 +55,40 @@
     }
     else
     {
-        foreach (var item in Model)
-        {
+<div class="pageContainer">
+    @foreach (var item in Model)
+    {
 
-            <div class="cardContainer">
+        <div class="cardContainer">
 
-                <div class="card" style="display: table-cell;padding-left: 25px; ">
-                    @*</td>
-                        <td>*@
-                    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-                    <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.CategoryName" />
-                    <div class="card-body">
-                        <h2 class="card-titles">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
-                        <div class="actionContainer">
-                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-                            {
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                            }
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                        </div>
+            <div class="card" style="display: table-cell;padding-left: 25px; ">
+                @*</td>
+                    <td>*@
+                @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+                <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.CategoryName" />
+                <div class="card-body">
+                    <h2 class="card-titles">@Html.DisplayFor(modelItem => item.CategoryName)</h2>
+                    <div class="actionContainer">
+                        @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
                     </div>
-
-                    @*</td>
-                        <td>*@
-
-                    @*</td>
-                        </tr>*@
                 </div>
-            </div>
 
-        }
+                @*</td>
+                    <td>*@
+
+                @*</td>
+                    </tr>*@
+            </div>
+        </div>
+
+
+    }
+</div>
     }
 
     @*</div>*@

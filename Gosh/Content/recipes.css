@@ -2,6 +2,7 @@
     display:flex;
     margin-top: 2em;
     justify-content:center;
+    margin-bottom: 5em;
 }
 
 .searchByName {
@@ -33,5 +34,30 @@
     color: rgb(51, 153, 102);
     font-size:1em;
     align-self: center;
-    margin-right:0.4em;
+}
+
+.img {
+    object-fit: cover;
+    width: 15em;
+    height: 17em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    filter: contrast(120%);
+    margin-bottom: 1em;
+}
+
+.actionContainer {
+    margin-bottom: 2em;
+    margin-left:1em;
+}
+
+.pageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10em;
+    margin-right: 3em;
+}
+
+
+.action {
+    width: 4em;
 }

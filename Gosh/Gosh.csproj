@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\category.css" />
     <Content Include="Content\Images\appleDisplay.jpg" />
+    <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\nav-image.png" />
     <Content Include="Content\recipes.css" />
