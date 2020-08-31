@@ -22,7 +22,8 @@ namespace Gosh.Models
 
         public string Summary { get; set; }
 
-        [DisplayName("Recipe Ingredients & Directions ")]
+        [DataType(DataType.MultilineText)]
+        [DisplayName("The recipe")]
         public string Content { get; set; }
 
         public string HomeImageUrl { get; set; }
