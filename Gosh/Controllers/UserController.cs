@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -135,7 +136,7 @@ namespace Gosh.Controllers
         {
             try
             {
-                User usr = db.Users.Where<User>(u => u.Username == username).ToList<User>()[0];
+                User usr = db.Users.Where<User>(u => u.Username== username).ToList<User>()[0];
                 Password pwd = db.Passwords.Where<Password>(p => p.UserID == usr.ID).ToList<Password>()[0];
                 if (Password.Check(password, pwd))
                 {
@@ -172,6 +173,7 @@ namespace Gosh.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(long? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -179,14 +181,21 @@ namespace Gosh.Controllers
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return HttpNotFound();
+                if (IsAdmin())
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    return RedirectToAction("Forbidden");
+                }
             }
-            if (IsAdmin() || (Session["Userid"] != null && Session["Username"].ToString().ToUpper() == user.Username.ToUpper()))
+            if (!IsAdmin() && ((Session["Userid"] == null || Convert.ToInt64(Session["Userid"]) != user.ID)))
             {
-                return View(user);
+                return RedirectToAction("Forbidden");
             }
 
-            return RedirectToAction("Forbidden");
+            return View(user);
         }
 
         // POST: User/Edit/5
@@ -194,20 +203,26 @@ namespace Gosh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Username,Password,FirstName,LastName,Mail,CreditCard,PhoneNumber")] User user)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Mail,PhoneNumber")] User user)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
+            User fromDB = db.Users.Where(u => u.ID == user.ID).First();
+            fromDB.FirstName = user.FirstName;
+            fromDB.LastName = user.LastName;
+            fromDB.Mail = user.Mail;
+            fromDB.PhoneNumber = user.PhoneNumber;
+            db.Users.AddOrUpdate(fromDB);
+            db.SaveChanges();
+            Session["FirstName"] = user.FirstName;
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: User/Delete/5
         public ActionResult Delete(long? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -225,6 +240,10 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("Forbidden");
+            }
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();

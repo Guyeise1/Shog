@@ -16,21 +16,11 @@ namespace Gosh.Controllers
     public class CategoriesController : Controller
     {
         private MyDB db = new MyDB();
-
-        // GET: Categories
-        public ActionResult Index()
-        {
-            return View(db.Categories.ToList());
-        }
         public bool IsAdmin()
         {
             return Session["Username"] != null && Session["Username"].ToString() == "ADMIN";
         }
         // GET: User
-
-
-
-
 
     public ActionResult RecommendedForYou()
         {
@@ -42,6 +32,7 @@ namespace Gosh.Controllers
 
             return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
         }
+        // GET: User
 
         // GET: Categories/Details/5
         public async Task<ActionResult> Details(long? id)
@@ -106,7 +97,7 @@ namespace Gosh.Controllers
         {
             if (!IsAdmin())
             {
-                return RedirectToAction("Forbidden");
+                return RedirectToAction("Forbidden","User");
             }
             if (id == null)
             {
@@ -190,13 +181,14 @@ namespace Gosh.Controllers
         /// <returns>
         /// List of categories match the filetr.
         /// </returns>
-        public List<Category> Search(string name, int? minimumRecipeCount, string area)
+        public ActionResult Index(string name, int? minimumRecipeCount, string area)
         {
-           
-            return db.Categories.Where(c => (name == null || c.CategoryName.IndexOf(name) != -1) &&
-                                           (minimumRecipeCount == null || db.Recipes.Where(r=>r.CategoryId == c.ID).Count() >= minimumRecipeCount) &&
-                                           (area == null || c.RepresetingArea == area))
-                 .ToList();
+      
+            ViewBag.area = new SelectList(db.Categories, "RepresetingArea", "RepresetingArea");
+
+            return View(db.Categories.Where(c => (name == null || c.CategoryName.Contains(name) ) &&
+            (area == null || c.RepresetingArea.Contains(area)) && 
+            (minimumRecipeCount == null || db.Recipes.Where(r => r.CategoryId == c.ID).Count() >= minimumRecipeCount)).ToList());
         }
     }
-}
+}   
