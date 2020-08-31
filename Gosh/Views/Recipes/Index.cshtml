@@ -47,7 +47,7 @@
 <div class="pageContainer">
     @foreach (var item in Model)
     {
-    <a href="Recipes/Details/@item.RecipeId">
+    <a href="@Url.Action("Details", "Recipes")/@item.RecipeId">
         <div class="cardContainer">
             <img class="img-hl img rounded " src="~/images/@item.HomeImageUrl" alt="@item.Header" />
             <div class="card-body">
