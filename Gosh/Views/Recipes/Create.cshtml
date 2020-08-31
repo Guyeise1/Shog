@@ -1,10 +1,10 @@
-﻿@model Gosh.Models.Recipe
+@model Gosh.Models.Recipe
 
 @{
     ViewBag.Title = "Create";
 }
     <div class="row">
-        <h2>Create</h2>
+        <h2>Create recipe</h2>
 
 
         @using (Html.BeginForm("create",
@@ -14,11 +14,17 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                <h4>Recipe</h4>
+            <div class=" form-horizontal ">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = " control-label col-md-2 " })
+                    <div class="col-md-10 ">
+                        @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Header, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -62,7 +68,7 @@
 
                     <div class="col-md-10">
 
-                        <label asp-for="CategoryId" class="control-label"> </label>
+                        <label asp-for="CategoryId" class="control-label green"> </label>
                         @Html.DropDownList("CategoryId", (SelectList)ViewBag.Categories, "Select Category", new { @class = "form-control" })
 
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
