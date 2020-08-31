@@ -45,7 +45,7 @@
     else
     {
 <div class="pageContainer">
-    @foreach (var item in Model)
+    @foreach (var item in Model.OrderBy(x=>x.Header))
     {
     <a href="@Url.Action("Details", "Recipes")/@item.RecipeId">
         <div class="cardContainer">

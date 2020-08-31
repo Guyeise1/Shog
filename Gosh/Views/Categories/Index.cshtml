@@ -56,7 +56,7 @@
     else
     {
 <div class="pageContainer">
-    @foreach (var item in Model)
+    @foreach (var item in Model.OrderBy(x=>x.CategoryName))
     {
 
     <div class="cardContainer">
