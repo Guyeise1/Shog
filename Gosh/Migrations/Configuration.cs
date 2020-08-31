@@ -141,7 +141,8 @@
         {
             Random rnd = new Random();
             int id = 1;
-            context.Recipes.AddOrUpdate(new Recipe()
+
+             context.Recipes.AddOrUpdate(new Recipe()
             {
                 CategoryId = 3,
                 DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
@@ -605,23 +606,25 @@ In a large bowl, mix the walnuts, romaine lettuce, round lettuce, spinach and pe
                 RecipeId = id++
             });
 
-            context.Recipes.AddOrUpdate(new Recipe()
-            {
-                CategoryId = 2,
-                DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
-                Summary = @"400g can lychee
+                context.Recipes.AddOrUpdate(new Recipe()
+                {
+                    CategoryId = 2,
+                    DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
+                    Summary = @"400g can lychee
 a small bunch of mint leaves Mint mi-ntThere are several types of mint, each with its own subtle difference in flavour and appearance.â€¦
 100ml vodka (or use lychee juice for a non-alcoholic version) Vodka vod-kaOriginally associated with Russia, Slavonic, Baltic and Scandinavian countries, vodka has becomeâ€¦
 juice 2 limes Lime ly-mThe same shape, but smaller thanâ€¦
 2 handfuls ice
 ",
-                Header = "Frozen lychee & mint cocktails",
-                Content = @"Take a can of lychees and drain the syrup into a blender. Add 4 of the lychees, a small bunch of mint leaves (reserving a few to garnish), the vodka and lime juice.
+                    Header = "Frozen lychee & mint cocktails",
+                    Content = @"Take a can of lychees and drain the syrup into a blender. Add 4 of the lychees, a small bunch of mint leaves (reserving a few to garnish), the vodka and lime juice.
 Add ice and blend until slushy. Serve in glasses garnished with a mint sprig and a lychee.
 ",
-                HomeImageUrl = "Recipes/Frozen lychee & mint cocktails.jpg",
-                RecipeId = id++
-            });
+                    HomeImageUrl = "Recipes/Frozen lychee & mint cocktails.jpg",
+                    RecipeId = id++
+                });
+            
+
         }
 
         void AddUserRecipePreference(Gosh.Models.MyDB context)
