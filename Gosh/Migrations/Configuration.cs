@@ -345,41 +345,6 @@ For the cucumber salad, use a swivel blade peeler to peel the cucumber into slic
 
             context.Recipes.AddOrUpdate(new Recipe()
             {
-                CategoryId = 7,
-                DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
-                Summary = @"",
-                Header = "The ultimate makeover-Chicken pie",
-                Content = @"",
-                HomeImageUrl = "Recipes/The ultimate makeover-Chicken pie.jpg",
-                RecipeId = id++
-            });
-
-            context.Recipes.AddOrUpdate(new Recipe()
-            {
-                CategoryId = 2,
-                DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
-                Summary = @"100g bulgar wheat
-100g kale Kale kay-elA member of the cabbage family, kale comes in two forms: kale, which has smooth leaves, andâ€¦
-large bunch mint, roughly chopped Mint mi-ntThere are several types of mint, each with its own subtle difference in flavour and appearance.â€¦
-bunch spring onion, sliced Spring onion sp-ring un-yunAlso known as scallions or green onions, spring onions are in fact very young onions, harvestedâ€¦
-Â½ cucumber, diced
-4 tomatoes, deseeded and chopped Tomato toe-mart-ohA member of the nightshade family (along with aubergines, peppers and chillies), tomatoes are inâ€¦
-pinch of ground cinnamon
-pinch of ground allspice
-6 tbsp olive oil Olive oil ol-iv oylProbably the most widely-used oil in cooking, olive oil is pressed from fresh olives. It'sâ€¦
-juice and zest Â½ lemon Lemon le-monOval in shape, with a pronouced bulge on one end, lemons are one of the most versatile fruitsâ€¦
-100g feta cheese, crumbled
-4 Baby Gem lettuces, leaves separated, to serve",
-                Header = "Kale tabbouleh",
-                Content = @"Tip the bulghar wheat into a heatproof bowl and just cover with boiling water, then cover with cling film and set aside for 10-15 mins or until tender. Put the kale in a food processor and pulse to finely chop.
-Stir the kale, mint, spring onions, cucumber and tomatoes through the bulghar wheat. Season with the cinnamon and allspice, then dress with the olive oil and lemon juice to taste. Scatter over the lemon zest and feta. To serve, let everyone scoop the salad onto leaves of Baby Gem lettuce.
-",
-                HomeImageUrl = "Recipes/Kale tabbouleh.jpg",
-                RecipeId = id++
-            });
-
-            context.Recipes.AddOrUpdate(new Recipe()
-            {
                 CategoryId = 8,
                 DateCreated = new DateTime(rnd.Next(2012, 2020), rnd.Next(1, 12), rnd.Next(1, 28), rnd.Next(1, 12), rnd.Next(0, 59), rnd.Next(0, 59)),
                 Summary = @"1 small pack frozen raspberries
