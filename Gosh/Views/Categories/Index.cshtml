@@ -6,6 +6,8 @@
 
 
 <link href="~/Content/category.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/recipes.css" rel="stylesheet" type="text/css" />
+
 
 @*<table class="table">
     <tr>
@@ -18,23 +20,49 @@
         <th></th>
     </tr>*@
 
+@if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
+{
     <div class="row createNew">
         @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "createNewButton" })
     </div>
-    <br />
-    
-    <div class="categoryContainer">
-        @foreach (var item in Model)
+}
+<br />
+
+@using (Html.BeginForm("Index", "Categories", FormMethod.Get, new { @class = "searchContainer" }))
+{
+    <div class="header">Name:</div>
+    @Html.TextArea("name", new { @class = "searchByName", @placeholder = "Search Category..." })
+    <span class="space"></span>
+    <div class="header">With minimum number of recipes:</div>
+    <input type="number" name="minimumRecipeCount" class="searchByName" />
+    <span class="space"></span>
+    <div class="header">Area:</div>
+    if (ViewBag.area != null)
+    {
+        @Html.DropDownList("area", null, "Select Area...", htmlAttributes: new { @class = "searchByName" })
+    }
+    <input type="submit" value="Search" class="searchByNameButton" />
+}
+
+<div class="categoryContainer">
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td style="color:red">
+                No Match Any Document
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
         {
 
-            @*<tr>
-            <td>*@
             <div class="cardContainer">
 
                 <div class="card" style="display: table-cell;padding-left: 25px; ">
-
                     @*</td>
-                    <td>*@
+                        <td>*@
                     @*@Html.DisplayFor(modelItem => item.ImagePath)*@
                     <img class="img" src="~/images/@item.ImagePath" width="200" height="270" alt="@item.ImagePath" />
                     <div class="card-body">
@@ -43,27 +71,25 @@
                             @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                             {
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                            }
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-
-                            @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-                            {
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
                             }
-                            </div>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                        </div>
                     </div>
 
                     @*</td>
-                    <td>*@
+                        <td>*@
 
                     @*</td>
-                    </tr>*@
+                        </tr>*@
                 </div>
             </div>
 
         }
+    }
 
-        @*</div>*@
+    @*</div>*@
 
-    </div>
+</div>
+
 

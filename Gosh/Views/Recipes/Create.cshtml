@@ -1,4 +1,4 @@
-﻿@model Gosh.Models.Recipe
+@model Gosh.Models.Recipe
 
 @{
     ViewBag.Title = "Create";
@@ -17,6 +17,7 @@
             <div class=" form-horizontal ">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                 <div class="form-group ">
                     @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = " control-label col-md-2 " })
                     <div class="col-md-10 ">
