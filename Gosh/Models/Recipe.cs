@@ -14,16 +14,17 @@ namespace Gosh.Models
 
         [DisplayName("Creation Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateCreated { get; set; }
 
         [DisplayName("Recipe Name")]
         public string Header { get; set; }
 
+        [DisplayName("Ingredients")]
         [DataType(DataType.MultilineText)]
         public string Summary { get; set; }
 
-        [DisplayName("Recipe Ingredients & Directions ")]
+        [DisplayName("Method")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
