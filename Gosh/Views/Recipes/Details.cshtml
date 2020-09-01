@@ -28,21 +28,26 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.Summary)
                 </dt>
-
-                <dd  style=" white-space: pre-line;">
-                    @Html.DisplayFor(model => model.Summary)
+                
+                <dd style=" white-space: pre-line;">
+                    <section>
+                        @Html.DisplayFor(model => model.Summary)
+                    </section>
                 </dd>
+
 
                 <dt>
                     @Html.DisplayNameFor(model => model.Content)
                 </dt>
 
-                <dd  style=" white-space: pre-line;">
+                <dd style=" white-space: pre-line;">
+                    <section>
                     @Html.DisplayFor(model => model.Content)
                     <br />
+                    </section>
                 </dd>
 
-               
+
 
             </dl>
         </div>
@@ -51,7 +56,9 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId }) |
+        @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN") {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId })
+        }
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>
