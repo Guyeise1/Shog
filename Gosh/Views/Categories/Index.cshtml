@@ -68,8 +68,8 @@
                                 <div class="actionContainer">
                                     @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
                                     {
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "action" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "action" })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-primary   " })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-danger" })
                                     }
                                 </div>
                             </div>
