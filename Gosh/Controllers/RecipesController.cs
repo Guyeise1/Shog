@@ -93,7 +93,7 @@ namespace Gosh.Controllers
         // GET: Recipes/Edit/5
         public ActionResult Edit(int? id)
         {
-            if(Session["Username"] == null || Session["Username"] != "ADMIN")
+            if(Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
             {
                 return RedirectToAction("Forbidden", "User");
             }
@@ -117,7 +117,7 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RecipeId,DateCreated,Header,Summary,Content,HomeImageUrl,CategoryId")] Recipe recipe)
         {
-            if (Session["Username"] == null || Session["Username"] != "ADMIN")
+            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
             {
                 return RedirectToAction("Forbidden", "User");
             }
@@ -133,6 +133,10 @@ namespace Gosh.Controllers
         // GET: Recipes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -150,6 +154,10 @@ namespace Gosh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Username"] == null || Session["Username"].ToString() != "ADMIN")
+            {
+                return RedirectToAction("Forbidden", "User");
+            }
             Recipe recipe = db.Recipes.Find(id);
             db.Recipes.Remove(recipe);
             db.SaveChanges();
