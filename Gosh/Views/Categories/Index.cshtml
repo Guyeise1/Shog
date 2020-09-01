@@ -30,13 +30,13 @@
 
 @using (Html.BeginForm("Index", "Categories", FormMethod.Get, new { @class = "searchContainer" }))
 {
-    <div class="header">Name:</div>
+    <header class="header">Name:</header>
     @Html.TextArea("name", new { @class = "searchByName", @placeholder = "Search Category..." })
     <span class="space"></span>
-    <div class="header">With minimum number of recipes:</div>
+    <header class="header">With minimum number of recipes:</header>
     <input type="number" name="minimumRecipeCount" class="searchByName" />
     <span class="space"></span>
-    <div class="header">Area:</div>
+    <header class="header">Area:</header>
     if (ViewBag.area != null)
     {
         @Html.DropDownList("area", null, "Select Area...", htmlAttributes: new { @class = "searchByName" })

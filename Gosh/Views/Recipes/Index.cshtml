@@ -9,13 +9,13 @@
 
 @using (Html.BeginForm("Index", "Recipes", FormMethod.Get, new { @class = "searchContainer" }))
     {
-        <div class="header">Name:</div>
+        <header class="header">Name:</header>
         @Html.TextArea("Header", new { @class = "searchByName", @placeholder = "Search Recipe..." })
         <span class="space"></span>
-        <div class="header">Created After:</div>
+        <header class="header">Created After:</header>
         <input type="date" name="created_after" class="searchByName" value=""/>
         <span class="space"></span>
-        <div class="header">Category:</div>
+        <header class="header">Category:</header>
         if (ViewBag.categoryId != null)
         {
             @Html.DropDownList("categoryId", null, "Select Category...", htmlAttributes: new { @class = "searchByName", @value = "" })
