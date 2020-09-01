@@ -3,10 +3,6 @@
 @{
     ViewBag.Title = "Edit";
 }
-    <aside>
-        <img src="~/images/@Model.HomeImageUrl" />
-
-    </aside>
 <div class="row">
     <h2>Edit recipe - @Html.ValueFor(model => model.Header) </h2>
 
@@ -68,12 +64,3 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<style>
-    img {
-        
-        position: absolute;
-        right: 10%;
-        width:400px;
-        top:20%;
-    }
-</style>
