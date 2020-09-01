@@ -102,6 +102,7 @@ namespace Gosh.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Categories = new SelectList(db.Categories, "ID", "CategoryName");
             return View(recipe);
         }
 

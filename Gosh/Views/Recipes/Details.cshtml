@@ -9,9 +9,9 @@
 <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
 <div class="row">
-    <div>
-        <h2>Details of recipe</h2>
-    </div>
+    <header>
+        <h2>Details of recipe - @Html.DisplayFor(model => model.Header)</h2>
+    </header>
     <div class="containerD2">
         <hr />
         <div class="col">
@@ -26,18 +26,10 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Header)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Header)
-                </dd>
-
-                <dt>
                     @Html.DisplayNameFor(model => model.Summary)
                 </dt>
 
-                <dd>
+                <dd  style=" white-space: pre-line;">
                     @Html.DisplayFor(model => model.Summary)
                 </dd>
 
@@ -50,22 +42,7 @@
                     <br />
                 </dd>
 
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.HomeImageUrl)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.HomeImageUrl)
-
-                </dd>*@
-
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.CategoryId)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.CategoryId)
-                </dd>*@
+               
 
             </dl>
         </div>
@@ -78,69 +55,3 @@
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>
-@*
-<h2>Details</h2>
-
-<div>
-    <h4>Recipe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Header)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Header)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeImageUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HomeImageUrl)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @if (Session["Username"] != null && Session["Username"].ToString() == "ADMIN")
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId })
-    }
-
-    @Html.ActionLink("Back to List", "Index")
-</p>
-*@
