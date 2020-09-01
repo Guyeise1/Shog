@@ -9,9 +9,9 @@
 <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
 <div class="row">
-    <div>
+    <header>
         <h2>Details of recipe - @Html.DisplayFor(model => model.Header)</h2>
-    </div>
+    </header>
     <div class="containerD2">
         <hr />
         <div class="col">
@@ -29,7 +29,7 @@
                     @Html.DisplayNameFor(model => model.Summary)
                 </dt>
 
-                <dd style=" white-space: pre-line;">
+                <dd  style=" white-space: pre-line;">
                     @Html.DisplayFor(model => model.Summary)
                 </dd>
 
