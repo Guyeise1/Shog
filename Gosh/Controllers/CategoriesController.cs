@@ -29,7 +29,7 @@ namespace Gosh.Controllers
                 // return new UserController().Forbidden();
                 return RedirectToAction("Forbidden", "User");
             }
-
+            ViewBag.area = new SelectList(db.Categories, "RepresetingArea", "RepresetingArea");
             return View("Index", new RecipeLearning().RecommendedForYou((long)Session["Userid"], 3));
         }
         // GET: User
